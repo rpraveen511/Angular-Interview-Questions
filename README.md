@@ -57,16 +57,17 @@ You can download the PDF and Epub version of this repository from the latest run
 |20| [What is the option to choose between inline and external template file?](#what-is-the-option-to-choose-between-inline-and-external-template-file)|
 
 
-|| [What are the various kinds of directives?](#what-are-the-various-kinds-of-directives)|
-|| [How do you create directives using CLI?](#how-do-you-create-directives-using-cli)|
-|| [Give an example for attribute directives?](#give-an-example-for-attribute-directives)|
-|| [What is index property in ngFor directive?](#what-is-index-property-in-ngfor-directive)|
-|| [What is the purpose of ngFor trackBy?](#what-is-the-purpose-of-ngfor-trackby)|
-|| [What is the purpose of ngSwitch directive?](#what-is-the-purpose-of-ngswitch-directive)|
+|21| [What are the various kinds of directives?](#what-are-the-various-kinds-of-directives)|
+|22| [How do you create directives using CLI?](#how-do-you-create-directives-using-cli)|
+
+|60| [Give an example for attribute directives?](#give-an-example-for-attribute-directives)|
+|61| [What is index property in ngFor directive?](#what-is-index-property-in-ngfor-directive)|
+|62| [What is the purpose of ngFor trackBy?](#what-is-the-purpose-of-ngfor-trackby)|
+|203| [What is the purpose of ngSwitch directive?](#what-is-the-purpose-of-ngswitch-directive)|
+|204| [What is the purpose of *ngFor directive?](#what-is-the-purpose-of-ngfor-directive)|
+|205| [What is the purpose of ngIf directive?](#what-is-the-purpose-of-ngif-directive)|
 
 
-|21| [What is the purpose of *ngFor directive?](#what-is-the-purpose-of-ngfor-directive)|
-|22| [What is the purpose of ngIf directive?](#what-is-the-purpose-of-ngif-directive)|
 |23| [What happens if you use script tag inside template?](#what-happens-if-you-use-script-tag-inside-template)|
 |24| [What is interpolation?](#what-is-interpolation)|
 |25| [What are template expressions?](#what-are-template-expressions)|
@@ -731,12 +732,13 @@ You can download the PDF and Epub version of this repository from the latest run
 
   **[⬆ Back to Top](#table-of-contents)**
 
-21. ### How do you create directives using CLI?
+22. ### How do you create directives using CLI?
     You can use CLI command `ng generate directive` to create the directive class file. It creates the source file(`src/app/components/directivename.directive.ts`), the respective test file(.spec.ts) and declare the directive class file in root module.
 
   **[⬆ Back to Top](#table-of-contents)**
 
-21. ### Give an example for attribute directives?
+
+60. ### Give an example for attribute directives?
     Let's take simple highlighter behavior as a example directive for DOM element. You can create and apply the attribute directive using below steps,
 
     1. Create HighlightDirective class with the file name `src/app/highlight.directive.ts`. In this file, we need to import **Directive** from core library to apply the metadata and **ElementRef** in the directive's constructor to inject a reference to the host DOM element ,
@@ -764,28 +766,7 @@ You can download the PDF and Epub version of this repository from the latest run
   **[⬆ Back to Top](#table-of-contents)**
 
 
-21. ### What is the purpose of ngFor directive?
-    We use Angular ngFor directive in the template to display each item in the list. For example, here we iterate over list of users,
-    ```html
-    <li *ngFor="let user of users">
-      {{ user }}
-    </li>
-    ```
-    The user variable in the ngFor double-quoted instruction is a **template input variable**
-
-  **[⬆ Back to Top](#table-of-contents)**
-
-21. ### What is the purpose of ngIf directive?
-    Sometimes an app needs to display a view or a portion of a view only under specific circumstances. The Angular ngIf directive inserts or removes an element based on a truthy/falsy condition. Let's take an example to display a message if the user age is more than 18,
-    ```html
-    <p *ngIf="user.age > 18">You are not eligible for student pass!</p>
-    ```
-    **Note:** Angular isn't showing and hiding the message. It is adding and removing the paragraph element from the DOM. That improves performance, especially in the larger projects with many data bindings.
-
-  **[⬆ Back to Top](#table-of-contents)**
-
-
-21. ### What is index property in ngFor directive?
+61. ### What is index property in ngFor directive?
      The index property of the NgFor directive is used to return the zero-based index of the item in each iteration. You can capture the index in a template input variable and use it in the template.
 
      For example, you can capture the index in a variable named indexVar and displays it with the todo's name using ngFor directive as below.
@@ -795,7 +776,7 @@ You can download the PDF and Epub version of this repository from the latest run
 
      **[⬆ Back to Top](#table-of-contents)**
 
-21. ### What is the purpose of ngFor trackBy?
+62. ### What is the purpose of ngFor trackBy?
      The main purpose of using *ngFor with trackBy option is performance optimization. Normally if you use NgFor with large data sets, a small change to one item by removing or adding an item, can trigger a cascade of DOM manipulations. In this case, Angular sees only a fresh list of new object references and to replace the old DOM elements with all new DOM elements. You can help Angular to track which items added or removed by providing a `trackBy` function which takes the index and the current item as arguments and needs to return the unique identifier for this item.
 
      For example, lets set trackBy to the trackByTodos() method
@@ -811,7 +792,7 @@ You can download the PDF and Epub version of this repository from the latest run
 
      **[⬆ Back to Top](#table-of-contents)**
 
-22. ### What is the purpose of ngSwitch directive?
+203. ### What is the purpose of ngSwitch directive?
      **NgSwitch** directive is similar to JavaScript switch statement which displays one element from among several possible elements, based on a switch condition. In this case only the selected element placed into the DOM. It has been used along with `NgSwitch`, `NgSwitchCase` and `NgSwitchDefault` directives.
 
      For example, let's display the browser details based on selected browser using ngSwitch directive.
@@ -826,6 +807,30 @@ You can download the PDF and Epub version of this repository from the latest run
      ```
 
      **[⬆ Back to Top](#table-of-contents)**
+
+
+
+
+
+204. ### What is the purpose of ngFor directive?
+    We use Angular ngFor directive in the template to display each item in the list. For example, here we iterate over list of users,
+    ```html
+    <li *ngFor="let user of users">
+      {{ user }}
+    </li>
+    ```
+    The user variable in the ngFor double-quoted instruction is a **template input variable**
+
+  **[⬆ Back to Top](#table-of-contents)**
+
+205. ### What is the purpose of ngIf directive?
+    Sometimes an app needs to display a view or a portion of a view only under specific circumstances. The Angular ngIf directive inserts or removes an element based on a truthy/falsy condition. Let's take an example to display a message if the user age is more than 18,
+    ```html
+    <p *ngIf="user.age > 18">You are not eligible for student pass!</p>
+    ```
+    **Note:** Angular isn't showing and hiding the message. It is adding and removing the paragraph element from the DOM. That improves performance, especially in the larger projects with many data bindings.
+
+  **[⬆ Back to Top](#table-of-contents)**
 
 
 23. ### What happens if you use script tag inside template?
