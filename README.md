@@ -27,9 +27,9 @@
 
 ---
 
-<!-- ## Downloading PDF/Epub formats
+<!-- ## Downloading PDF/Epub formats -->
 
-You can download the PDF and Epub version of this repository from the latest run on the [actions tab](https://github.com/sudheerj/angular-interview-questions/actions). -->
+<!-- You can download the PDF and Epub version of this repository from the latest run on the [actions tab](https://github.com/sudheerj/angular-interview-questions/actions). -->
 
 ### Table of Contents
 
@@ -55,19 +55,8 @@ You can download the PDF and Epub version of this repository from the latest run
 |18| [How is Dependency Hierarchy formed?](#how-is-dependency-hierarchy-formed)|
 |19| [What is the purpose of async pipe?](#what-is-the-purpose-of-async-pipe)|
 |20| [What is the option to choose between inline and external template file?](#what-is-the-option-to-choose-between-inline-and-external-template-file)|
-
-
-|21| [What are the various kinds of directives?](#what-are-the-various-kinds-of-directives)|
-|22| [How do you create directives using CLI?](#how-do-you-create-directives-using-cli)|
-
-|60| [Give an example for attribute directives?](#give-an-example-for-attribute-directives)|
-|61| [What is index property in ngFor directive?](#what-is-index-property-in-ngfor-directive)|
-|62| [What is the purpose of ngFor trackBy?](#what-is-the-purpose-of-ngfor-trackby)|
-|203| [What is the purpose of ngSwitch directive?](#what-is-the-purpose-of-ngswitch-directive)|
-|204| [What is the purpose of *ngFor directive?](#what-is-the-purpose-of-ngfor-directive)|
-|205| [What is the purpose of ngIf directive?](#what-is-the-purpose-of-ngif-directive)|
-
-
+|21| [What is the purpose of *ngFor directive?](#what-is-the-purpose-of-ngfor-directive)|
+|22| [What is the purpose of ngIf directive?](#what-is-the-purpose-of-ngif-directive)|
 |23| [What happens if you use script tag inside template?](#what-happens-if-you-use-script-tag-inside-template)|
 |24| [What is interpolation?](#what-is-interpolation)|
 |25| [What are template expressions?](#what-are-template-expressions)|
@@ -105,9 +94,12 @@ You can download the PDF and Epub version of this repository from the latest run
 |57| [What are the mapping rules between Angular component and custom element?](#what-are-the-mapping-rules-between-angular-component-and-custom-element)|
 |58| [How do you define typings for custom elements?](#how-do-you-define-typings-for-custom-elements)|
 |59| [What are dynamic components?](#what-are-dynamic-components)|
-
-
-
+|60| [What are the various kinds of directives?](#what-are-the-various-kinds-of-directives)|
+|61| [How do you create directives using CLI?](#how-do-you-create-directives-using-cli)|
+|62| [Give an example for attribute directives?](#give-an-example-for-attribute-directives)|
+|63| [What is index property in ngFor directive?](#what-is-index-property-in-ngfor-directive)|
+|64| [What is the purpose of ngFor trackBy?](#what-is-the-purpose-of-ngfor-trackby)|
+|65| [What is the purpose of ngSwitch directive?](#what-is-the-purpose-of-ngswitch-directive)|
 |63| [What is Angular Router?](#what-is-angular-router)|
 |64| [What is the purpose of base href tag?](#what-is-the-purpose-of-base-href-tag)|
 |65| [What are the router imports?](#what-are-the-router-imports)|
@@ -721,98 +713,7 @@ You can download the PDF and Epub version of this repository from the latest run
 
   **[⬆ Back to Top](#table-of-contents)**
 
-
-21. ### What are the various kinds of directives?
-    There are mainly three kinds of directives,
-    1. **Components** — These are directives with a template.
-    2. **Structural directives** — These directives change the DOM layout by adding and removing DOM elements.
-     Ex : ngFor,ngIf etc
-    3. **Attribute directives** — These directives change the appearance or behavior of an element, component, or another directive.
-     Ex : Highlight 
-
-  **[⬆ Back to Top](#table-of-contents)**
-
-22. ### How do you create directives using CLI?
-    You can use CLI command `ng generate directive` to create the directive class file. It creates the source file(`src/app/components/directivename.directive.ts`), the respective test file(.spec.ts) and declare the directive class file in root module.
-
-  **[⬆ Back to Top](#table-of-contents)**
-
-
-60. ### Give an example for attribute directives?
-    Let's take simple highlighter behavior as a example directive for DOM element. You can create and apply the attribute directive using below steps,
-
-    1. Create HighlightDirective class with the file name `src/app/highlight.directive.ts`. In this file, we need to import **Directive** from core library to apply the metadata and **ElementRef** in the directive's constructor to inject a reference to the host DOM element ,
-        ```javascript
-        import { Directive, ElementRef } from '@angular/core';
-
-        @Directive({
-          selector: '[appHighlight]'
-        })
-        export class HighlightDirective {
-            constructor(el: ElementRef) {
-               el.nativeElement.style.backgroundColor = 'red';
-            }
-        }
-        ```
-    2. Apply the attribute directive as an attribute to the host element(for example, <p>)
-        ```javascript
-        <p appHighlight>Highlight me!</p>
-        ```
-    3. Run the application to see the highlight behavior on paragraph element
-        ```javascript
-        ng serve
-        ```
-
-  **[⬆ Back to Top](#table-of-contents)**
-
-
-61. ### What is index property in ngFor directive?
-     The index property of the NgFor directive is used to return the zero-based index of the item in each iteration. You can capture the index in a template input variable and use it in the template.
-
-     For example, you can capture the index in a variable named indexVar and displays it with the todo's name using ngFor directive as below.
-     ```javascript
-     <div *ngFor="let todo of todos; let i=index">{{i + 1}} - {{todo.name}}</div>
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-62. ### What is the purpose of ngFor trackBy?
-     The main purpose of using *ngFor with trackBy option is performance optimization. Normally if you use NgFor with large data sets, a small change to one item by removing or adding an item, can trigger a cascade of DOM manipulations. In this case, Angular sees only a fresh list of new object references and to replace the old DOM elements with all new DOM elements. You can help Angular to track which items added or removed by providing a `trackBy` function which takes the index and the current item as arguments and needs to return the unique identifier for this item.
-
-     For example, lets set trackBy to the trackByTodos() method
-     ```javascript
-     <div *ngFor="let todo of todos; trackBy: trackByTodos">
-       ({{todo.id}}) {{todo.name}}
-     </div>
-     ```
-     and define the trackByTodos method,
-     ```javascript
-     trackByTodos(index: number, item: Todo): number { return todo.id; }
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-203. ### What is the purpose of ngSwitch directive?
-     **NgSwitch** directive is similar to JavaScript switch statement which displays one element from among several possible elements, based on a switch condition. In this case only the selected element placed into the DOM. It has been used along with `NgSwitch`, `NgSwitchCase` and `NgSwitchDefault` directives.
-
-     For example, let's display the browser details based on selected browser using ngSwitch directive.
-     ```javascript
-     <div [ngSwitch]="currentBrowser.name">
-       <chrome-browser    *ngSwitchCase="'chrome'"    [item]="currentBrowser"></chrome-browser>
-       <firefox-browser   *ngSwitchCase="'firefox'"     [item]="currentBrowser"></firefox-browser>
-       <opera-browser     *ngSwitchCase="'opera'"  [item]="currentBrowser"></opera-browser>
-       <safari-browser     *ngSwitchCase="'safari'"   [item]="currentBrowser"></safari-browser>
-       <ie-browser  *ngSwitchDefault           [item]="currentItem"></ie-browser>
-     </div>
-     ```
-
-     **[⬆ Back to Top](#table-of-contents)**
-
-
-
-
-
-204. ### What is the purpose of ngFor directive?
+21. ### What is the purpose of ngFor directive?
     We use Angular ngFor directive in the template to display each item in the list. For example, here we iterate over list of users,
     ```html
     <li *ngFor="let user of users">
@@ -823,7 +724,7 @@ You can download the PDF and Epub version of this repository from the latest run
 
   **[⬆ Back to Top](#table-of-contents)**
 
-205. ### What is the purpose of ngIf directive?
+22. ### What is the purpose of ngIf directive?
     Sometimes an app needs to display a view or a portion of a view only under specific circumstances. The Angular ngIf directive inserts or removes an element based on a truthy/falsy condition. Let's take an example to display a message if the user age is more than 18,
     ```html
     <p *ngIf="user.age > 18">You are not eligible for student pass!</p>
@@ -831,7 +732,6 @@ You can download the PDF and Epub version of this repository from the latest run
     **Note:** Angular isn't showing and hiding the message. It is adding and removing the paragraph element from the DOM. That improves performance, especially in the larger projects with many data bindings.
 
   **[⬆ Back to Top](#table-of-contents)**
-
 
 23. ### What happens if you use script tag inside template?
 
@@ -1420,11 +1320,45 @@ You can download the PDF and Epub version of this repository from the latest run
 
   **[⬆ Back to Top](#table-of-contents)**
 
-60. ### What are
-61. ### What are
-62. ### What are
+60. ### What are the various kinds of directives?
+    There are mainly three kinds of directives,
+    1. **Components** — These are directives with a template.
+    2. **Structural directives** — These directives change the DOM layout by adding and removing DOM elements.
+    3. **Attribute directives** — These directives change the appearance or behavior of an element, component, or another directive.
 
+  **[⬆ Back to Top](#table-of-contents)**
 
+61. ### How do you create directives using CLI?
+    You can use CLI command `ng generate directive` to create the directive class file. It creates the source file(`src/app/components/directivename.directive.ts`), the respective test file(.spec.ts) and declare the directive class file in root module.
+
+  **[⬆ Back to Top](#table-of-contents)**
+
+62. ### Give an example for attribute directives?
+    Let's take simple highlighter behavior as a example directive for DOM element. You can create and apply the attribute directive using below steps,
+
+    1. Create HighlightDirective class with the file name `src/app/highlight.directive.ts`. In this file, we need to import **Directive** from core library to apply the metadata and **ElementRef** in the directive's constructor to inject a reference to the host DOM element ,
+        ```javascript
+        import { Directive, ElementRef } from '@angular/core';
+
+        @Directive({
+          selector: '[appHighlight]'
+        })
+        export class HighlightDirective {
+            constructor(el: ElementRef) {
+               el.nativeElement.style.backgroundColor = 'red';
+            }
+        }
+        ```
+    2. Apply the attribute directive as an attribute to the host element(for example, <p>)
+        ```javascript
+        <p appHighlight>Highlight me!</p>
+        ```
+    3. Run the application to see the highlight behavior on paragraph element
+        ```javascript
+        ng serve
+        ```
+
+  **[⬆ Back to Top](#table-of-contents)**
 
 63. ### What is Angular Router?
     Angular Router is a mechanism in which navigation happens from one view to the next as users perform application tasks. It borrows the concepts or model of browser's application navigation.
@@ -3412,9 +3346,47 @@ You can download the PDF and Epub version of this repository from the latest run
 
      **[⬆ Back to Top](#table-of-contents)**
 
-203. ### What is
-204. ### What is
-205. ### What is
+203. ### What is index property in ngFor directive?
+     The index property of the NgFor directive is used to return the zero-based index of the item in each iteration. You can capture the index in a template input variable and use it in the template.
+
+     For example, you can capture the index in a variable named indexVar and displays it with the todo's name using ngFor directive as below.
+     ```javascript
+     <div *ngFor="let todo of todos; let i=index">{{i + 1}} - {{todo.name}}</div>
+     ```
+
+     **[⬆ Back to Top](#table-of-contents)**
+
+204. ### What is the purpose of ngFor trackBy?
+     The main purpose of using *ngFor with trackBy option is performance optimization. Normally if you use NgFor with large data sets, a small change to one item by removing or adding an item, can trigger a cascade of DOM manipulations. In this case, Angular sees only a fresh list of new object references and to replace the old DOM elements with all new DOM elements. You can help Angular to track which items added or removed by providing a `trackBy` function which takes the index and the current item as arguments and needs to return the unique identifier for this item.
+
+     For example, lets set trackBy to the trackByTodos() method
+     ```javascript
+     <div *ngFor="let todo of todos; trackBy: trackByTodos">
+       ({{todo.id}}) {{todo.name}}
+     </div>
+     ```
+     and define the trackByTodos method,
+     ```javascript
+     trackByTodos(index: number, item: Todo): number { return todo.id; }
+     ```
+
+     **[⬆ Back to Top](#table-of-contents)**
+
+205. ### What is the purpose of ngSwitch directive?
+     **NgSwitch** directive is similar to JavaScript switch statement which displays one element from among several possible elements, based on a switch condition. In this case only the selected element placed into the DOM. It has been used along with `NgSwitch`, `NgSwitchCase` and `NgSwitchDefault` directives.
+
+     For example, let's display the browser details based on selected browser using ngSwitch directive.
+     ```javascript
+     <div [ngSwitch]="currentBrowser.name">
+       <chrome-browser    *ngSwitchCase="'chrome'"    [item]="currentBrowser"></chrome-browser>
+       <firefox-browser   *ngSwitchCase="'firefox'"     [item]="currentBrowser"></firefox-browser>
+       <opera-browser     *ngSwitchCase="'opera'"  [item]="currentBrowser"></opera-browser>
+       <safari-browser     *ngSwitchCase="'safari'"   [item]="currentBrowser"></safari-browser>
+       <ie-browser  *ngSwitchDefault           [item]="currentItem"></ie-browser>
+     </div>
+     ```
+
+     **[⬆ Back to Top](#table-of-contents)**
 
 206. ### Is it possible to do aliasing for inputs and outputs?
      Yes, it is possible to do aliasing for inputs and outputs in two ways.
