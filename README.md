@@ -240,9 +240,9 @@
 |200| [What is the purpose of hidden property?](#what-is-the-purpose-of-hidden-property)|
 |201| [What is the difference between ngIf and hidden property?](#what-is-the-difference-between-ngif-and-hidden-property)|
 |202| [What is slice pipe?](#what-is-slice-pipe)|
-
-
-
+|203| [What is index property in ngFor directive?](#What-is-index-property-in-ngFor-directive)|
+|204| [What is the purpose of ngFor trackBy?](#What-is-the-purpose-of-ngFor-trackBy)|
+|205| [What is the purpose of ngSwitch directive?](#What-is-the-purpose-of-ngSwitch-directive)|
 |206| [Is it possible to do aliasing for inputs and outputs?](#is-it-possible-to-do-aliasing-for-inputs-and-outputs)|
 |207| [What is safe navigation operator?](#what-is-safe-navigation-operator)|
 |208| [Is any special configuration required for Angular9?](#is-any-special-configuration-required-for-angular9)|
