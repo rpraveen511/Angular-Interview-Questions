@@ -317,11 +317,11 @@
 
 1. ### What is Angular Framework?
 
-      • Angular is a **TypeScript-based open-source** Application design framework.
-      • Development platform for efficient and sophisticated SPA.
-        ◦ A component based framework for building scalable web applications.
-        ◦ A suite of developer tools to help you develop, build, test and update code.
-        ◦ A collection of well integrated Libraries with features like Routing, Forms Management, Data binding,  Client-server Communication, Dependency Injection, Directives, Declarative Templates, End-End Tooling.
+      1. Angular is a **TypeScript-based open-source** Application design framework.
+      2. Development platform for efficient and sophisticated SPA.        
+        1. A component based framework for building scalable web applications.
+        2. A suite of developer tools to help you develop, build, test and update code.
+        3. A collection of well integrated Libraries with features like Routing, Forms Management,  Data binding,  Client-server Communication, Dependency Injection, Directives, Declarative Templates, End-End Tooling.
 
 
     A front-end platform that makes easy to build applications with in web/mobile/desktop.
@@ -402,13 +402,13 @@
 
 7. ### What are components?
 
-    • The most basic UI building blocks of an application.
-    • A component includes a TypeScript class with a @Component() decorator, an HTML template, and styles.
-    • @Component specifies
-    • A CSS selector that defines how the component is used in a template.
-    • HTML elements in your template that match this selector become instances of the component.
-    • An HTML template that instructs Angular how to render the component.
-    • An optional set of CSS styles that define the appearance of the template's HTML elements.
+    1. The most basic UI building blocks of an application.
+    2. A component includes a TypeScript class with a @Component() decorator, an HTML template, and styles.
+    3. @Component specifies
+      1. A CSS selector that defines how the component is used in a template.
+      2. HTML elements in your template that match this selector become instances of the component.
+      3. An HTML template that instructs Angular how to render the component.
+      4. An optional set of CSS styles that define the appearance of the template's HTML elements.
 
     These components are subset of directives. Unlike directives, components always have a template and only one component can be instantiated per an element in a template.
     Let's see a simple example of Angular component
