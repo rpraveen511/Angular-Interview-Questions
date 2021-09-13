@@ -1,6 +1,6 @@
 # Angular Interview Questions & Answers
 
-> Click :star:if you like the project. Pull Request are highly appreciated.
+<!-- > Click :star:if you like the project. Pull Request are highly appreciated. -->
  <!-- Follow me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates. -->
 
 ---
@@ -317,7 +317,14 @@
 
 1. ### What is Angular Framework?
 
-    Angular is a **TypeScript-based open-source** front-end platform that makes it easy to build applications with in web/mobile/desktop. The major features of this framework such as declarative templates, dependency injection, end to end tooling, and many more other features are used to ease the development.
+      • Angular is a **TypeScript-based open-source** Application design framework.
+      • Development platform for efficient and sophisticated SPA.
+        ◦ A component based framework for building scalable web applications.
+        ◦ A suite of developer tools to help you develop, build, test and update code.
+        ◦ A collection of well integrated Libraries with features like Routing, Forms Management, Data binding,  Client-server Communication, Dependency Injection, Directives, Declarative Templates, End-End Tooling.
+
+
+    A front-end platform that makes easy to build applications with in web/mobile/desktop.
 
     It is used to build awesome SPA(single Page Application),web applications.
 
@@ -394,7 +401,16 @@
   **[⬆ Back to Top](#table-of-contents)**
 
 7. ### What are components?
-    Components are the most basic UI building block of an Angular app which formed a tree of Angular components. These components are subset of directives. Unlike directives, components always have a template and only one component can be instantiated per an element in a template.
+
+    • The most basic UI building blocks of an application.
+    • A component includes a TypeScript class with a @Component() decorator, an HTML template, and styles.
+    • @Component specifies
+    • A CSS selector that defines how the component is used in a template.
+    • HTML elements in your template that match this selector become instances of the component.
+    • An HTML template that instructs Angular how to render the component.
+    • An optional set of CSS styles that define the appearance of the template's HTML elements.
+
+    These components are subset of directives. Unlike directives, components always have a template and only one component can be instantiated per an element in a template.
     Let's see a simple example of Angular component
     ```typescript
     import { Component } from '@angular/core';
