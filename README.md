@@ -41,10 +41,13 @@
 |4 | [Write a pictorial diagram of Angular architecture?](#write-a-pictorial-diagram-of-angular-architecture)|
 |5 | [What are the key components of Angular?](#what-are-the-key-components-of-angular)|
 |6 | [What are directives?](#what-are-directives)|
-|7 | [What are components?](#what-are-components)|
-|8 | [What are the differences between Component and Directive?](#what-are-the-differences-between-component-and-directive)|
-|9 | [What is a template?](#what-is-a-template)|
-|10| [What is a module?](#what-is-a-module)|
+|60| [What are the various kinds of directives?](#what-are-the-various-kinds-of-directives)|
+|61| [How do you create directives using CLI?](#how-do-you-create-directives-using-cli)|
+|62| [Give an example for attribute directives?](#give-an-example-for-attribute-directives)|
+|7 | [What is a module?](#what-is-a-module)|
+|8 | [What are components?](#what-are-components)|
+|9 | [What are the differences between Component and Directive?](#what-are-the-differences-between-component-and-directive)|
+|10 | [What is a template?](#what-is-a-template)|
 |11| [What are lifecycle hooks available?](#what-are-lifecycle-hooks-available)|
 |12| [What is a data binding?](#what-is-a-data-binding)|
 |13| [What is metadata?](#what-is-metadata)|
@@ -94,9 +97,6 @@
 |57| [What are the mapping rules between Angular component and custom element?](#what-are-the-mapping-rules-between-angular-component-and-custom-element)|
 |58| [How do you define typings for custom elements?](#how-do-you-define-typings-for-custom-elements)|
 |59| [What are dynamic components?](#what-are-dynamic-components)|
-|60| [What are the various kinds of directives?](#what-are-the-various-kinds-of-directives)|
-|61| [How do you create directives using CLI?](#how-do-you-create-directives-using-cli)|
-|62| [Give an example for attribute directives?](#give-an-example-for-attribute-directives)|
 |63| [What is index property in ngFor directive?](#what-is-index-property-in-ngfor-directive)|
 |64| [What is the purpose of ngFor trackBy?](#what-is-the-purpose-of-ngfor-trackby)|
 |65| [What is the purpose of ngSwitch directive?](#what-is-the-purpose-of-ngswitch-directive)|
@@ -384,7 +384,7 @@
 6. ### What are directives?
     Directives add behaviour to an existing DOM element or an existing component instance.
     ```typescript
-    import { Directive, ElementRef, Input } from '@angular/core';
+    import { Directive, ElementRef } from '@angular/core';
 
     @Directive({ selector: '[myHighlight]' })
     export class HighlightDirective {
@@ -441,12 +441,39 @@
   **[⬆ Back to Top](#table-of-contents)**
 
 
-7. ### What are components?
+7. ### What is a module?
+
+    Modules are logical boundaries in your application and the application is divided into separate modules to separate the functionality of your application.
+    Lets take an example of **app.module.ts** root module declared with **@NgModule** decorator as below,
+    ```typescript
+    import { NgModule }      from '@angular/core';
+    import { BrowserModule } from '@angular/platform-browser';
+    import { AppComponent }  from './app.component';
+
+    @NgModule ({
+       imports:      [ BrowserModule ],
+       declarations: [ AppComponent ],
+       bootstrap:    [ AppComponent ],
+       providers: []
+    })
+    export class AppModule { }
+    ```
+    The NgModule decorator has five important(among all) options
+    1. The imports option is used to import other dependent modules. The BrowserModule is required by default for any web based angular application
+    2. The declarations option is used to define components in the respective module
+    3. The bootstrap option tells Angular which Component to bootstrap in the application
+    4. The providers option is used to configure set of injectable objects that are available in the injector of this module.
+    5. The entryComponents option is a set of components dynamically loaded into the view.
+
+  **[⬆ Back to Top](#table-of-contents)**  
+
+
+8. ### What are components?
 
     1. The most basic UI building blocks of an application.
     2. A component includes a TypeScript class with a @Component() decorator, an HTML template, and styles.
     3. @Component specifies
-        1. A CSS selector that defines how the component is used in a template.
+        1. A selector that defines how the component is used in a template.
         2. HTML elements in your template that match this selector become instances of the component.
         3. An HTML template that instructs Angular how to render the component.
         4. An optional set of CSS styles that define the appearance of the template's HTML elements.
@@ -471,7 +498,7 @@
 
   **[⬆ Back to Top](#table-of-contents)**
 
-8. ### What are the differences between Component and Directive?
+9. ### What are the differences between Component and Directive?
     In a short note, A component(@component) is a directive-with-a-template.
 
     Some of the major differences are mentioned in a tabular form
@@ -479,15 +506,15 @@
     | Component | Directive |
     |---- | ---------
     | To register a component we use @Component meta-data annotation  | To register directives we use @Directive meta-data annotation |
-    | Components are typically used to create UI widgets| Directive is used to add behavior to an existing DOM element |
-    | Component is used to break up the application into smaller components| Directive is use to design re-usable components|
+    | Components are typically used to create UI widgets| Directives are used to design re-usable components |
+    | Component is used to break up the application into smaller components| Directives are used to add behavior to an existing DOM element|
     | Only one component can be present per DOM element | Many directives can be used per DOM element |
     | @View decorator or templateurl/template are mandatory | Directive doesn't use View|
 
   **[⬆ Back to Top](#table-of-contents)**
 
-9. ### What is a template?
-    A template is a HTML view where you can display data by binding controls to properties of an Angular component. You can store your component's template in one of two places. You can define it inline using the template property, or you can define the template in a separate HTML file and link to it in the component metadata using the @Component decorator's templateUrl property.
+10. ### What is a template?
+    A template is a HTML view where you can **display data by binding controls to properties** of an Angular component. You can store your component's template in one of two places. You can define it inline using the template property, or you can define the template in a separate HTML file and link to it in the component metadata using the @Component decorator's templateUrl property.
 
     **Using inline template with template syntax,**
     ```typescript
@@ -523,31 +550,6 @@
 
   **[⬆ Back to Top](#table-of-contents)**
 
-10. ### What is a module?
-
-    Modules are logical boundaries in your application and the application is divided into separate modules to separate the functionality of your application.
-    Lets take an example of **app.module.ts** root module declared with **@NgModule** decorator as below,
-    ```typescript
-    import { NgModule }      from '@angular/core';
-    import { BrowserModule } from '@angular/platform-browser';
-    import { AppComponent }  from './app.component';
-
-    @NgModule ({
-       imports:      [ BrowserModule ],
-       declarations: [ AppComponent ],
-       bootstrap:    [ AppComponent ],
-       providers: []
-    })
-    export class AppModule { }
-    ```
-    The NgModule decorator has five important(among all) options
-    1. The imports option is used to import other dependent modules. The BrowserModule is required by default for any web based angular application
-    2. The declarations option is used to define components in the respective module
-    3. The bootstrap option tells Angular which Component to bootstrap in the application
-    4. The providers option is used to configure set of injectable objects that are available in the injector of this module.
-    5. The entryComponents option is a set of components dynamically loaded into the view.
-
-  **[⬆ Back to Top](#table-of-contents)**
 
 11. ### What are lifecycle hooks available?
     Angular application goes through an entire set of processes or has a lifecycle right from its initiation to the end of the application.
@@ -1377,45 +1379,6 @@
 
   **[⬆ Back to Top](#table-of-contents)**
 
-60. ### What are the various kinds of directives?
-    There are mainly three kinds of directives,
-    1. **Components** — These are directives with a template.
-    2. **Structural directives** — These directives change the DOM layout by adding and removing DOM elements.
-    3. **Attribute directives** — These directives change the appearance or behavior of an element, component, or another directive.
-
-  **[⬆ Back to Top](#table-of-contents)**
-
-61. ### How do you create directives using CLI?
-    You can use CLI command `ng generate directive` to create the directive class file. It creates the source file(`src/app/components/directivename.directive.ts`), the respective test file(.spec.ts) and declare the directive class file in root module.
-
-  **[⬆ Back to Top](#table-of-contents)**
-
-62. ### Give an example for attribute directives?
-    Let's take simple highlighter behavior as a example directive for DOM element. You can create and apply the attribute directive using below steps,
-
-    1. Create HighlightDirective class with the file name `src/app/highlight.directive.ts`. In this file, we need to import **Directive** from core library to apply the metadata and **ElementRef** in the directive's constructor to inject a reference to the host DOM element ,
-        ```javascript
-        import { Directive, ElementRef } from '@angular/core';
-
-        @Directive({
-          selector: '[appHighlight]'
-        })
-        export class HighlightDirective {
-            constructor(el: ElementRef) {
-               el.nativeElement.style.backgroundColor = 'red';
-            }
-        }
-        ```
-    2. Apply the attribute directive as an attribute to the host element(for example, <p>)
-        ```javascript
-        <p appHighlight>Highlight me!</p>
-        ```
-    3. Run the application to see the highlight behavior on paragraph element
-        ```javascript
-        ng serve
-        ```
-
-  **[⬆ Back to Top](#table-of-contents)**
 
 63. ### What is Angular Router?
     Angular Router is a mechanism in which navigation happens from one view to the next as users perform application tasks. It borrows the concepts or model of browser's application navigation.
