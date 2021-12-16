@@ -317,11 +317,11 @@
 
 1. ### What is Angular Framework?
 
-      1. Angular is a **TypeScript-based open-source** Application design framework.
-      2. Development platform for efficient and sophisticated SPA.        
-          1. A component based framework for building scalable web applications.
-          2. A suite of developer tools to help you develop, build, test and update code.
-          3. A collection of well integrated Libraries with features like Routing, Forms Management,  Data binding,  Client-server Communication, Dependency Injection, Directives, Declarative Templates, End-End Tooling.
+    1. Angular is a **TypeScript-based open-source** Application design framework.
+    2. Development platform for efficient and sophisticated SPA.        
+        1. A component based framework for building scalable web applications.
+        2. A suite of developer tools to help you develop, build, test and update code.
+        3. A collection of well integrated Libraries with features like Routing, Forms Management,  Data binding,  Client-server Communication, Dependency Injection, Directives, Declarative Templates, End-End Tooling.
 
 
     A front-end platform that makes easy to build applications with in web/mobile/desktop.
@@ -372,9 +372,9 @@
   **[⬆ Back to Top](#table-of-contents)**
 
 5. ### What are the key components of Angular?
-    Angular has the below key components,
-    1. **Component:** These are the basic building blocks of angular application to control HTML views.
-    2. **Modules:** An angular module is set of angular basic building blocks like component, directives, services etc. An application is divided into logical pieces and each piece of code is called as "module" which perform a single task.
+    Angular has the below key components,    
+    1. **Modules:** An angular module is set of angular basic building blocks like component, directives, services etc. An application is divided into logical pieces and each piece of code is called as "module" which perform a single task.
+    2. **Component:** These are the basic building blocks of angular application **to control HTML views**.
     3. **Templates:** This represent the views of an Angular application.
     4. **Services:** It is used to create components which can be shared across the entire application.
     5. **Metadata:** This can be used to add more data to an Angular class.
@@ -399,6 +399,47 @@
     <p myHighlight>Highlight me!</p>
     ```
   **[⬆ Back to Top](#table-of-contents)**
+
+60. ### What are the various kinds of directives?
+    There are mainly three kinds of directives,
+    1. **Components** — These are directives with a template.
+    2. **Structural directives** — These directives change the DOM layout by adding and removing DOM elements.
+    3. **Attribute directives** — These directives change the appearance or behavior of an element, component, or another directive.
+
+  **[⬆ Back to Top](#table-of-contents)**
+
+61. ### How do you create directives using CLI?
+    You can use CLI command `ng generate directive` to create the directive class file. It creates the source file(`src/app/components/directivename.directive.ts`), the respective test file(.spec.ts) and declare the directive class file in root module.
+
+  **[⬆ Back to Top](#table-of-contents)**
+
+62. ### Give an example for attribute directives?
+    Let's take simple highlighter behavior as a example directive for DOM element. You can create and apply the attribute directive using below steps,
+
+    1. Create HighlightDirective class with the file name `src/app/highlight.directive.ts`. In this file, we need to import **Directive** from core library to apply the metadata and **ElementRef** in the directive's constructor to inject a reference to the host DOM element ,
+        ```javascript
+        import { Directive, ElementRef } from '@angular/core';
+
+        @Directive({
+          selector: '[appHighlight]'
+        })
+        export class HighlightDirective {
+            constructor(el: ElementRef) {
+               el.nativeElement.style.backgroundColor = 'red';
+            }
+        }
+        ```
+    2. Apply the attribute directive as an attribute to the host element(for example, <p>)
+        ```javascript
+        <p appHighlight>Highlight me!</p>
+        ```
+    3. Run the application to see the highlight behavior on paragraph element
+        ```javascript
+        ng serve
+        ```
+
+  **[⬆ Back to Top](#table-of-contents)**
+
 
 7. ### What are components?
 
