@@ -596,7 +596,8 @@
   **[⬆ Back to Top](#table-of-contents)**
 
 13. ### What is metadata?
-    Metadata is used to decorate a class so that it can configure the expected behavior of the class. The metadata is represented by decorators
+    Metadata is used to decorate a class so that it can configure the expected behavior of the class. The metadata is represented by decorators.
+    **Decorators are a design pattern that is used to separate modification of a class**
     1. **Class decorators**, e.g. @Component and @NgModule
         ```typescript
         import { NgModule, Component } from '@angular/core';
@@ -735,7 +736,14 @@
   **[⬆ Back to Top](#table-of-contents)**
 
 17. ### What is dependency injection in Angular?
-    Dependency injection (DI), is an important application design principle in which a class asks for dependencies from external sources rather than creating them itself. Angular comes with its own dependency injection framework for resolving dependencies( services or objects that a class needs to perform its function).So you can have your services depend on other services throughout your application.
+
+    Dependency injection lets you declare the dependencies of your Typescript classes without taking care of their instantiation.Instead Angular handles the instantiation for you and lets you write more testable and flexible code.
+
+    Dependency injection (DI), is an important application design pattern in which a class asks for dependencies from external sources rather than creating them itself. Angular comes with its own dependency injection framework for resolving dependencies( services or objects that a class needs to perform its function).So you can have your services depend on other services throughout your application.
+
+    Design Principles are best practices to follow to allow scalable architecture and software craftmanship.
+
+    Design Patterns are techniques about how to do the design and architect ouur code.It is a general repeatable solution for a commonly occuring problem in software design.
 
   **[⬆ Back to Top](#table-of-contents)**
 
