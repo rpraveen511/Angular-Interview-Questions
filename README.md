@@ -311,7 +311,7 @@
 |271| [How do you get the current route?](#how-do-you-get-the-current-route)|
 |272| [What is Component Test Harnesses?](#what-is-component-test-harnesses)|
 |273| [What is the benefit of Automatic Inlining of Fonts?](#what-is-the-benefit-of-automatic-inlining-of-fonts)|
-|274| [](#)|
+|274| [What are developments in angular versions?](#What-are-developments-in-angular-versions?)|
 |275| [](#)|
 |276| [](#)|
 
@@ -751,24 +751,6 @@
 
   **[⬆ Back to Top](#table-of-contents)**
 
-19. ### What is the purpose of async pipe?
-    The AsyncPipe subscribes to an observable or promise and returns the latest value it has emitted. When a new value is emitted, the pipe marks the component to be checked for changes.
-
-    Let's take a time observable which continuously updates the view for every 2 seconds with the current time.
-    ```typescript
-    @Component({
-      selector: 'async-observable-pipe',
-      template: `<div><code>observable|async</code>:
-           Time: {{ time | async }}</div>`
-    })
-    export class AsyncObservablePipeComponent {
-      time = new Observable(observer =>
-        setInterval(() => observer.next(new Date().toString()), 2000)
-      );
-    }
-    ```
-
-  **[⬆ Back to Top](#table-of-contents)**
 
 20. ### What is the option to choose between inline and external template file?
     You can store your component's template in one of two places. You can define it inline using the **template** property, or you can define the template in a separate HTML file and link to it in the component metadata using the **@Component** decorator's **templateUrl** property.
@@ -893,6 +875,25 @@
     })
     export class BirthdayComponent {
       birthday = new Date(1987, 6, 18); // June 18, 1987
+    }
+    ```
+
+  **[⬆ Back to Top](#table-of-contents)**
+
+  19. ### What is the purpose of async pipe?
+    The AsyncPipe subscribes to an observable or promise and returns the latest value it has emitted. When a new value is emitted, the pipe marks the component to be checked for changes.
+
+    Let's take a time observable which continuously updates the view for every 2 seconds with the current time.
+    ```typescript
+    @Component({
+      selector: 'async-observable-pipe',
+      template: `<div><code>observable|async</code>:
+           Time: {{ time | async }}</div>`
+    })
+    export class AsyncObservablePipeComponent {
+      time = new Observable(observer =>
+        setInterval(() => observer.next(new Date().toString()), 2000)
+      );
     }
     ```
 
@@ -4612,3 +4613,37 @@
      
 273. ### What is the benefit of Automatic Inlining of Fonts?
      During compile time, Angular CLI will download and inline the fonts that your application is using. This performance update speed up the first contentful paint(FCP) and this feature is enabled by default in apps built with version 11.
+
+
+274. ### What are developments in angular versions?
+
+     **Ivy Renderer (Angular 9+):**
+
+      Advantage: Ivy is the new rendering engine for Angular. It brings improvements in bundle size, faster compilation, and runtime performance. It also facilitates better tree-shakability, which means smaller production bundles.
+
+      **Angular Language Service (Angular 9+):**
+      Advantage: The Angular Language Service provides better editor support, including autocompletion, error checking, and navigation for Angular applications. It enhances the development experience by providing more accurate and faster feedback.
+
+      **Strict Mode (Angular 11+):**
+      Advantage: Strict mode enforces stricter type checking and better runtime performance by eliminating some runtime checks that are present in the non-strict mode. It helps catch more errors during development and can improve the performance of production applications.
+
+      **Improved Hot Module Replacement (HMR) Support (Angular 11+):**
+      Advantage: Angular 11 introduced improved HMR support, allowing developers to see changes in their application instantly without a full page refresh. This can significantly speed up the development process.
+
+      **Webpack 5 Support (Angular 11+):**
+      Advantage: Angular 11 added compatibility with Webpack 5, which brings performance improvements, better tree-shaking, and other optimizations for bundling applications.
+
+      **Angular Forms (Angular 8+):**
+      Advantage: Angular has been consistently improving its forms module. Reactive Forms and Template-Driven Forms provide powerful tools for handling form-related logic with better performance and maintainability.
+
+      **Angular CLI Improvements:**
+      Advantage: The Angular CLI has seen continuous updates, providing new commands, features, and optimizations for the development workflow. This includes capabilities like generating components, services, modules, etc., and managing dependencies effortlessly.
+
+      **Angular Universal (Server-Side Rendering - SSR) Improvements:**
+      Advantage: Angular Universal enables server-side rendering for Angular applications, improving initial page load times, SEO, and performance. Ongoing improvements have enhanced its capabilities.
+
+      **Angular Elements (Angular 6+):**
+      Advantage: Angular Elements allows developers to use Angular components outside of Angular applications, enabling easier integration of Angular components into non-Angular applications.
+
+      **Improved Dependency Injection (Angular 6+):**
+      Advantage: Angular has continuously refined its dependency injection system, making it more flexible and easier to use. This helps in organizing and managing the application's components and services efficiently.     
