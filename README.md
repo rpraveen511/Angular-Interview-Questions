@@ -382,7 +382,7 @@
   **[⬆ Back to Top](#table-of-contents)**
 
 6. ### What are directives?
-    Directives add behaviour to an existing DOM element or an existing component instance.
+    Directives **add behaviour to an existing DOM element** or an existing component instance.
     ```typescript
     import { Directive, ElementRef } from '@angular/core';
 
