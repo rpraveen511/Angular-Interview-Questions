@@ -311,9 +311,10 @@
 |271| [How do you get the current route?](#how-do-you-get-the-current-route)|
 |272| [What is Component Test Harnesses?](#what-is-component-test-harnesses)|
 |273| [What is the benefit of Automatic Inlining of Fonts?](#what-is-the-benefit-of-automatic-inlining-of-fonts)|
-|274| [What are developments in angular versions?](#What-are-developments-in-angular-versions?)|
+|274 | [What are major changes in Angular versions?](#what-are-major-changes-in-angular-versions)|
 |275| [](#)|
 |276| [](#)|
+
 
 1. ### What is Angular Framework?
 
@@ -4615,7 +4616,7 @@
      During compile time, Angular CLI will download and inline the fonts that your application is using. This performance update speed up the first contentful paint(FCP) and this feature is enabled by default in apps built with version 11.
 
 
-274. ### What are developments in angular versions?
+274. ### What are major changes in Angular versions?
 
      **Ivy Renderer (Angular 9+):**
 
