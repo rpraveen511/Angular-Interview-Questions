@@ -1,7 +1,7 @@
 # Angular Interview Questions & Answers
-<a href='https://www.scholarhat.com/tutorial/angular/angular-interview-questions-and-answers' target="_blank">Angular Interview1</a>
+<a href='https://www.scholarhat.com/tutorial/angular/angular-interview-questions-and-answers' target="_blank">Scholarhat Angular Interview Questions</a>
 <br>
-<a href='https://www.interviewbit.com/angular-interview-questions/' target="_blank">Angular Interview2</a>
+<a href='https://www.interviewbit.com/angular-interview-questions/' target="_blank">Interviewbit Angular Interview Questions</a>
 
 ### Table of Contents
 
@@ -286,7 +286,10 @@
 |274 | [What are major changes in Angular versions?](#what-are-major-changes-in-angular-versions)|
 |275| [](#)|
 |276| [](#)|
-
+|277| [](#)|
+|278| [](#)|
+|279| [](#)|
+|280| [](#)|
 
 1. ### What is Angular Framework?
 
@@ -4589,6 +4592,29 @@
 
 
 274. ### What are major changes in Angular versions?
+
+    **(Angular 18)**
+
+    1)Zoneless Change Detection**
+      Simply add `provideExperimentalZonelessChangeDetection` to your application.
+      make sure to remove zone.js from your polyfills in angular.json.
+
+    2)Coalescing by Default**
+    3)Material 3, Deferrable Views, Built-in Control Flow are now stable!**
+    4)Improvements in Server-Side Rendering**
+    5)Route Redirects as Functions**
+    6)Hydration Support in CDK and Material**
+    7)Robust Hosting for Your Apps with Firebase App Hosting**
+    8)Improved Debugging Experience**
+    9)Understanding Event Replay in Angular**
+
+    **(Angular 17)**
+      1)Deferrable Views introduced.
+      2)Built-in Control Flow.
+      3)Performance Boost with esbuild.
+      4)Standalone Components for Enhanced Reusability.
+      5)Improved Server-Side Rendering (SSR).
+
 
      **Ivy Renderer (Angular 9+):**
 
