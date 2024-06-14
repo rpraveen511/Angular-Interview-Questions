@@ -1,4 +1,6 @@
 # Angular Interview Questions & Answers
+<a href='https://www.scholarhat.com/tutorial/angular/angular-interview-questions-and-answers'>Angular Interview1</a>
+<a href='https://www.interviewbit.com/angular-interview-questions/'>Angular Interview2</a>
 
 ### Table of Contents
 
