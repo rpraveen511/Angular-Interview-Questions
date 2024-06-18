@@ -354,6 +354,7 @@
     3. **Templates:** This represent the views of an Angular application.
     4. **Services:** It is used to create components which can be shared across the entire application.
     5. **Metadata:** This can be used to add more data to an Angular class.
+                    Metadata is used to decorate a class so that it can configure the expected behavior of the class.
 
   **[⬆ Back to Top](#table-of-contents)**
 
@@ -788,7 +789,7 @@
   **[⬆ Back to Top](#table-of-contents)**
 
 25. ### What are template expressions?
-    A template expression produces a value similar to any Javascript expression. Angular executes the expression and assigns it to a property of a binding target; the target might be an HTML element, a component, or a directive. In the property binding, a template expression appears in quotes to the right of the = symbol as in [property]="expression".
+    A template expression produces a value similar to any Javascript expression. Angular executes the expression and assigns it to a property of a binding target; the target might be an HTML element, a component, or a directive. In the property binding, a template expression appears in quotes to the right of the = symbol as in **[property]="expression"**.
     In interpolation syntax, the template expression is surrounded by double curly braces. For example, in the below interpolation, the template expression is {{username}},
 
     ```html
@@ -955,7 +956,9 @@
   **[⬆ Back to Top](#table-of-contents)**
 
 33. ### What is the difference between pure and impure pipe?
-    A pure pipe is only called when Angular detects a change in the value or the parameters passed to a pipe. For example, any changes to a primitive input value (String, Number, Boolean, Symbol) or a changed object reference (Date, Array, Function, Object). An impure pipe is called for every change detection cycle no matter whether the value or parameters changes. i.e, An impure pipe is called often, as often as every keystroke or mouse-move.
+    A pure pipe is only called when Angular detects a change in the value or the parameters passed to a pipe. For example, any changes to a primitive input value (String, Number, Boolean, Symbol) or a changed object reference (Date, Array, Function, Object).
+    
+    An impure pipe is called for every change detection cycle no matter whether the value or parameters changes. i.e, An impure pipe is called often, as often as every keystroke or mouse-move.
 
   **[⬆ Back to Top](#table-of-contents)**
 
@@ -990,7 +993,9 @@
   **[⬆ Back to Top](#table-of-contents)**
 
 35. ### What are observables?
-    Observables are declarative which provide support for passing messages between publishers and subscribers in your application. They are mainly used for event handling, asynchronous programming, and handling multiple values. In this case, you define a function for publishing values, but it is not executed until a consumer subscribes to it. The subscribed consumer then receives notifications until the function completes, or until they unsubscribe.
+    Observables are declarative which provide support for passing messages between publishers and subscribers in your application.
+    
+    They are mainly used for event handling, asynchronous programming, and handling multiple values. In this case, you define a function for publishing values, but it is not executed until a consumer subscribes to it. The subscribed consumer then receives notifications until the function completes, or until they unsubscribe.
 
   **[⬆ Back to Top](#table-of-contents)**
 
