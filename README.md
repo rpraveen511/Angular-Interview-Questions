@@ -354,6 +354,7 @@
     3. **Templates:** This represent the views of an Angular application.
     4. **Services:** It is used to create components which can be shared across the entire application.
     5. **Metadata:** This can be used to add more data to an Angular class.
+    
                     Metadata is used to decorate a class so that it can configure the expected behavior of the class.
 
   **[⬆ Back to Top](#table-of-contents)**
@@ -535,7 +536,7 @@
     ![ScreenShot](images/lifecycle.png)
 
     The description of each lifecycle method is as below,
-    1. **ngOnChanges:** When the value of a data bound property changes, then this method is called.
+    1. **ngOnChanges:** This method is called When the value of a data bound property changes.
     2. **ngOnInit:** This is called whenever the initialization of the directive/component after Angular first displays the data-bound properties happens.
     3. **ngDoCheck:** This is for the detection and to act on changes that Angular can't or won't detect on its own.
     4. **ngAfterContentInit:** This is called in response after Angular projects external content into the component's view.
@@ -1284,91 +1285,6 @@
 
   **[⬆ Back to Top](#table-of-contents)**
 
-51. ### What are angular elements?
-    Angular elements are Angular components packaged as **custom elements**(a web standard for defining new HTML elements in a framework-agnostic way). Angular Elements hosts an Angular component, providing a bridge between the data and logic defined in the component and standard DOM APIs, thus, providing a way to use Angular components in `non-Angular environments`.
-
-  **[⬆ Back to Top](#table-of-contents)**
-
-52. ### What is the browser support of Angular Elements?
-    Since Angular elements are packaged as custom elements the browser support of angular elements is same as custom elements support.
-
-    This feature is is currently supported natively in a number of browsers and pending for other browsers.
-
-    | Browser | Angular Element Support |
-    |---- | --------- |
-    | Chrome | Natively supported|
-    | Opera | Natively supported |
-    | Safari| Natively supported |
-    | Firefox | Natively supported from 63 version onwards. You need to enable dom.webcomponents.enabled and dom.webcomponents.customelements.enabled in older browsers |
-    | Edge| Currently it is in progress|
-
-  **[⬆ Back to Top](#table-of-contents)**
-
-53. ### What are custom elements?
-    Custom elements (or Web Components) are a Web Platform feature which extends HTML by allowing you to define a tag whose content is created and controlled by JavaScript code. The browser maintains a `CustomElementRegistry` of defined custom elements, which maps an instantiable JavaScript class to an HTML tag. Currently this feature is supported by Chrome, Firefox, Opera, and Safari, and available in other browsers through polyfills.
-
-  **[⬆ Back to Top](#table-of-contents)**
-
-54. ### Do I need to bootstrap custom elements?
-    No, custom elements bootstrap (or start) automatically when they are added to the DOM, and are automatically destroyed when removed from the DOM. Once a custom element is added to the DOM for any page, it looks and behaves like any other HTML element, and does not require any special knowledge of Angular.
-
-  **[⬆ Back to Top](#table-of-contents)**
-
-55. ### Explain how custom elements works internally?
-    Below are the steps in an order about custom elements functionality,
-    1. **App registers custom element with browser:** Use the `createCustomElement()` function to convert a component into a class that can be registered with the browser as a custom element.
-    2. **App adds custom element to DOM:**  Add custom element just like a built-in HTML element directly into the DOM.
-    3. **Browser instantiate component based class:** Browser creates an instance of the registered class and adds it to the DOM.
-    4. **Instance provides content with data binding and change detection:** The content with in template is rendered using the component and DOM data.
-    The flow chart of the custom elements functionality would be as follows,
-
-    ![CustomElement](images/customElement.png)
-
-  **[⬆ Back to Top](#table-of-contents)**
-
-56. ### How to transfer components to custom elements?
-    Transforming components to custom elements involves **two** major steps,
-    1. **Build custom element class:** Angular provides the `createCustomElement()` function for converting an Angular component (along with its dependencies) to a custom element. The conversion process implements `NgElementConstructor` interface, and creates a constructor class which is used to produce a self-bootstrapping instance of Angular component.
-    2. **Register element class with browser:** It uses `customElements.define()` JS function, to register the configured constructor and its associated custom-element tag with the browser's `CustomElementRegistry`. When the browser encounters the tag for the registered element, it uses the constructor to create a custom-element instance.
-
-    The detailed structure would be as follows,
-    ![CreateElement](images/createElement.png)
-
-  **[⬆ Back to Top](#table-of-contents)**
-
-57. ### What are the mapping rules between Angular component and custom element?
-    The Component properties and logic maps directly into HTML attributes and the browser's event system. Let us describe them in two steps,
-    1. The createCustomElement() API parses the component input properties with corresponding attributes for the custom element. For example, component @Input('myInputProp') converted as custom element attribute `my-input-prop`.
-    2. The Component outputs are dispatched as HTML Custom Events, with the name of the custom event matching the output name. For example, component @Output() valueChanged = new EventEmitter() converted as custom element with dispatch event as "valueChanged".
-
-  **[⬆ Back to Top](#table-of-contents)**
-
-58. ### How do you define typings for custom elements?
-    You can use the `NgElement` and `WithProperties` types exported from @angular/elements.
-
-    Let's see how it can be applied by comparing with Angular component.
-    1. The simple container with input property would be as below,
-        ```javascript
-        @Component(...)
-        class MyContainer {
-          @Input() message: string;
-        }
-        ```
-    2. After applying types typescript validates input value and their types,
-        ```javascirpt
-        const container = document.createElement('my-container') as NgElement & WithProperties<{message: string}>;
-        container.message = 'Welcome to Angular elements!';
-        container.message = true;  // <-- ERROR: TypeScript knows this should be a string.
-        container.greet = 'News';  // <-- ERROR: TypeScript knows there is no `greet` property on `container`.
-        ```
-
-  **[⬆ Back to Top](#table-of-contents)**
-
-59. ### What are dynamic components?
-    Dynamic components are the components in which components location in the application is not defined at build time.i.e, They are not used in any angular template. But the component is instantiated and placed in the application at runtime.
-
-  **[⬆ Back to Top](#table-of-contents)**
-
 
 63. ### What is Angular Router?
     Angular Router is a mechanism in which navigation happens from one view to the next as users perform application tasks. It borrows the concepts or model of browser's application navigation.
@@ -1536,7 +1452,94 @@
 74. ### Do I need a Routing Module always?
     No, the Routing Module is a design choice. You can skip routing Module (for example, AppRoutingModule) when the configuration is simple and merge the routing configuration directly into the companion module (for example, AppModule). But it is recommended when the configuration is complex and includes specialized guard and resolver services.
 
+  **[⬆ Back to Top](#table-of-contents)**  
+
+51. ### What are angular elements?
+    Angular elements are Angular components packaged as **custom elements**(a web standard for defining new HTML elements in a framework-agnostic way). Angular Elements hosts an Angular component, providing a bridge between the data and logic defined in the component and standard DOM APIs, thus, providing a way to use Angular components in `non-Angular environments`.
+
   **[⬆ Back to Top](#table-of-contents)**
+
+52. ### What is the browser support of Angular Elements?
+    Since Angular elements are packaged as custom elements the browser support of angular elements is same as custom elements support.
+
+    This feature is is currently supported natively in a number of browsers and pending for other browsers.
+
+    | Browser | Angular Element Support |
+    |---- | --------- |
+    | Chrome | Natively supported|
+    | Opera | Natively supported |
+    | Safari| Natively supported |
+    | Firefox | Natively supported from 63 version onwards. You need to enable dom.webcomponents.enabled and dom.webcomponents.customelements.enabled in older browsers |
+    | Edge| Currently it is in progress|
+
+  **[⬆ Back to Top](#table-of-contents)**
+
+53. ### What are custom elements?
+    Custom elements (or Web Components) are a Web Platform feature which extends HTML by allowing you to define a tag whose content is created and controlled by JavaScript code. The browser maintains a `CustomElementRegistry` of defined custom elements, which maps an instantiable JavaScript class to an HTML tag. Currently this feature is supported by Chrome, Firefox, Opera, and Safari, and available in other browsers through polyfills.
+
+  **[⬆ Back to Top](#table-of-contents)**
+
+54. ### Do I need to bootstrap custom elements?
+    No, custom elements bootstrap (or start) automatically when they are added to the DOM, and are automatically destroyed when removed from the DOM. Once a custom element is added to the DOM for any page, it looks and behaves like any other HTML element, and does not require any special knowledge of Angular.
+
+  **[⬆ Back to Top](#table-of-contents)**
+
+55. ### Explain how custom elements works internally?
+    Below are the steps in an order about custom elements functionality,
+    1. **App registers custom element with browser:** Use the `createCustomElement()` function to convert a component into a class that can be registered with the browser as a custom element.
+    2. **App adds custom element to DOM:**  Add custom element just like a built-in HTML element directly into the DOM.
+    3. **Browser instantiate component based class:** Browser creates an instance of the registered class and adds it to the DOM.
+    4. **Instance provides content with data binding and change detection:** The content with in template is rendered using the component and DOM data.
+    The flow chart of the custom elements functionality would be as follows,
+
+    ![CustomElement](images/customElement.png)
+
+  **[⬆ Back to Top](#table-of-contents)**
+
+56. ### How to transfer components to custom elements?
+    Transforming components to custom elements involves **two** major steps,
+    1. **Build custom element class:** Angular provides the `createCustomElement()` function for converting an Angular component (along with its dependencies) to a custom element. The conversion process implements `NgElementConstructor` interface, and creates a constructor class which is used to produce a self-bootstrapping instance of Angular component.
+    2. **Register element class with browser:** It uses `customElements.define()` JS function, to register the configured constructor and its associated custom-element tag with the browser's `CustomElementRegistry`. When the browser encounters the tag for the registered element, it uses the constructor to create a custom-element instance.
+
+    The detailed structure would be as follows,
+    ![CreateElement](images/createElement.png)
+
+  **[⬆ Back to Top](#table-of-contents)**
+
+57. ### What are the mapping rules between Angular component and custom element?
+    The Component properties and logic maps directly into HTML attributes and the browser's event system. Let us describe them in two steps,
+    1. The createCustomElement() API parses the component input properties with corresponding attributes for the custom element. For example, component @Input('myInputProp') converted as custom element attribute `my-input-prop`.
+    2. The Component outputs are dispatched as HTML Custom Events, with the name of the custom event matching the output name. For example, component @Output() valueChanged = new EventEmitter() converted as custom element with dispatch event as "valueChanged".
+
+  **[⬆ Back to Top](#table-of-contents)**
+
+58. ### How do you define typings for custom elements?
+    You can use the `NgElement` and `WithProperties` types exported from @angular/elements.
+
+    Let's see how it can be applied by comparing with Angular component.
+    1. The simple container with input property would be as below,
+        ```javascript
+        @Component(...)
+        class MyContainer {
+          @Input() message: string;
+        }
+        ```
+    2. After applying types typescript validates input value and their types,
+        ```javascirpt
+        const container = document.createElement('my-container') as NgElement & WithProperties<{message: string}>;
+        container.message = 'Welcome to Angular elements!';
+        container.message = true;  // <-- ERROR: TypeScript knows this should be a string.
+        container.greet = 'News';  // <-- ERROR: TypeScript knows there is no `greet` property on `container`.
+        ```
+
+  **[⬆ Back to Top](#table-of-contents)**
+
+59. ### What are dynamic components?
+    Dynamic components are the components in which components location in the application is not defined at build time.i.e, They are not used in any angular template. But the component is instantiated and placed in the application at runtime.
+
+  **[⬆ Back to Top](#table-of-contents)**
+
+
 
 75. ### What is Angular Universal?
     Angular Universal is a server-side rendering module for Angular applications in various scenarios. This is a community driven project and available under @angular/platform-server package. Recently Angular Universal is integrated with Angular CLI.
@@ -4589,12 +4592,13 @@
       ```js
         console.log(this.router.url); //  /routename
       ```
+        **[⬆ Back to Top](#table-of-contents)**
 272. ### What is Component Test Harnesses?
      A component harness is a testing API around an Angular directive or component to make tests simpler by hiding implementation details from test suites. This can be shared between unit tests, integration tests, and end-to-end tests. The idea for component harnesses comes from the **PageObject** pattern commonly used for integration testing.
      
 273. ### What is the benefit of Automatic Inlining of Fonts?
      During compile time, Angular CLI will download and inline the fonts that your application is using. This performance update speed up the first contentful paint(FCP) and this feature is enabled by default in apps built with version 11.
-
+  **[⬆ Back to Top](#table-of-contents)**
 
 274. ### What are major changes in Angular versions?
 
@@ -4650,4 +4654,6 @@
       Advantage: Angular Elements allows developers to use Angular components outside of Angular applications, enabling easier integration of Angular components into non-Angular applications.
 
       **Improved Dependency Injection (Angular 6+):**
-      Advantage: Angular has continuously refined its dependency injection system, making it more flexible and easier to use. This helps in organizing and managing the application's components and services efficiently.     
+      Advantage: Angular has continuously refined its dependency injection system, making it more flexible and easier to use. This helps in organizing and managing the application's components and services efficiently.  
+
+  **[⬆ Back to Top](#table-of-contents)**
