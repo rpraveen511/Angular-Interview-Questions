@@ -733,6 +733,7 @@
 
     #### Angular has two injector hierarchies:
     ![ScreenShot](images/injectorHierarchies.png)
+    ![ScreenShot](images/architecture.png)
 
     #### Module injector 
     When angular starts, it creates a root injector where the services will be registered, these are provided via injectable annotation. All services provided in the `ng-model` property are called providers (if those modules are not lazy-loaded).
