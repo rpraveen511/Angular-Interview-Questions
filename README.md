@@ -294,7 +294,7 @@
 |282| [What are the Route Parameters? Could you explain each of them?](#what-are-the-route-parameters-could-you-explain-each-of-them)|
 |283| [What is NgRx?](#what-is-ngrx)|
 |284 | [What are major changes in Angular versions?](#what-are-major-changes-in-angular-versions)|
-|285| [what are Differences between var, let, and const](#what-are-differences-between-var-let-const)|
+|285| [What are Differences between var, let, and const?](#what-are-differences-between-var-let-and-const)|
 |286| [](#)|
 |287| [](#)|
 
