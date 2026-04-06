@@ -311,6 +311,8 @@
   **[⬆ Back to Top](#table-of-contents)**
 
 2. ### What is the difference between AngularJS and Angular?
+    AngularJS (version 1.x) is a JavaScript framework, whereas Angular (version 2+) is a complete rewrite of AngularJS using TypeScript, providing better performance, mobile support, modularity, and a more modern architecture.
+    
     Angular is a completely revived component-based framework in which an application is a tree of individual components.
 
     Some of the major difference in tabular form
@@ -353,99 +355,100 @@
 
 5. ### What are the key components of Angular?
     Angular has the below key components,    
-    1. **Modules:** An angular module is set of angular basic building blocks like component, directives, services etc. An application is divided into logical pieces and each piece of code is called as "module" which perform a single task.
+    1. **Modules:** An angular application is divided into logical pieces and each piece of code is called as "module" which perform a single task. An angular module is set of angular basic building blocks like component, directives, services etc. 
     2. **Component:** These are the basic building blocks of angular application **to control HTML views**.
     3. **Templates:** This represent the views of an Angular application.
     4. **Services:** It is used to create components which can be shared across the entire application.
     5. **Metadata:** This can be used to add more data to an Angular class.
     
-                    Metadata is used to decorate a class so that it can configure the expected behavior of the class.
+    Metadata is used to decorate a class so that it can configure the expected behavior of the class.
 
   **[⬆ Back to Top](#table-of-contents)**
 
 
 6. ### What are directives?
-  Directives **add behaviour to an existing DOM element** or an existing component instance.
-  ```typescript
-  import { Directive, ElementRef } from '@angular/core';
+    Directives **add behaviour to an existing DOM element** or an existing component instance.
+    ```typescript
+    import { Directive, ElementRef } from '@angular/core';
 
-  @Directive({ selector: '[myHighlight]' })
-  export class HighlightDirective {
-    constructor(el: ElementRef) {
-       el.nativeElement.style.backgroundColor = 'yellow';
+    @Directive({ selector: '[myHighlight]' })
+    export class HighlightDirective {
+      constructor(el: ElementRef) {
+        el.nativeElement.style.backgroundColor = 'yellow';
+      }
     }
-  }
-  ```
+    ```
 
-  Now this directive extends HTML element behavior with a yellow background as below
-  ```html
-  <p myHighlight>Highlight me!</p>
-  ```
+    Now this directive extends HTML element behavior with a yellow background as below
+    ```html
+    <p myHighlight>Highlight me!</p>
+    ```
   **[⬆ Back to Top](#table-of-contents)**
 
 7. ### What are the various kinds of directives?
-  There are mainly three kinds of directives,
-  1. **Components** — These are directives with a template.
-  2. **Structural directives** — These directives change the DOM layout by adding and removing DOM elements.
-  3. **Attribute directives** — These directives change the appearance or behavior of an element, component, or another directive.
+    There are mainly three kinds of directives,
+    1. **Components** — These are directives with a template.
+    2. **Structural directives** — These directives change the DOM layout by adding and removing DOM elements.
+    3. **Attribute directives** — These directives change the appearance or behavior of an element, component, or another directive.
 
   **[⬆ Back to Top](#table-of-contents)**
 
 8. ### How do you create directives using CLI?
-  You can use CLI command `ng generate directive` to create the directive class file. It creates the source file(`src/app/components/directivename.directive.ts`), the respective test file(.spec.ts) and declare the directive class file in root module.
+    You can use CLI command `ng generate directive` to create the directive class file. It creates the source file(`src/app/components/directivename.directive.ts`), the respective test file(.spec.ts) and declare the directive class file in root module.
 
   **[⬆ Back to Top](#table-of-contents)**
 
 9. ### Give an example for attribute directives?
-  Let's take simple highlighter behavior as a example directive for DOM element. You can create and apply the attribute directive using below steps,
+    Let's take simple highlighter behavior as a example directive for DOM element. You can create and apply the attribute directive using below steps,
 
-  1. Create HighlightDirective class with the file name `src/app/highlight.directive.ts`. In this file, we need to import **Directive** from core library to apply the metadata and **ElementRef** in the directive's constructor to inject a reference to the host DOM element ,
-    ```javascript
-    import { Directive, ElementRef } from '@angular/core';
+    1. Create HighlightDirective class with the file name `src/app/highlight.directive.ts`. In this file, we need to import **Directive** from core library to apply the metadata and **ElementRef** in the directive's constructor to inject a reference to the host DOM element ,
 
-    @Directive({
-      selector: '[appHighlight]'
-    })
-    export class HighlightDirective {
-      constructor(el: ElementRef) {
-         el.nativeElement.style.backgroundColor = 'red';
-      }
-    }
-    ```
-  2. Apply the attribute directive as an attribute to the host element(for example, <p>)
-    ```javascript
-    <p appHighlight>Highlight me!</p>
-    ```
-  3. Run the application to see the highlight behavior on paragraph element
-    ```javascript
-    ng serve
-    ```
+        ```javascript
+        import { Directive, ElementRef } from '@angular/core';
+
+        @Directive({
+          selector: '[appHighlight]'
+        })
+        export class HighlightDirective {
+          constructor(el: ElementRef) {
+            el.nativeElement.style.backgroundColor = 'red';
+          }
+        }
+        ```
+    2. Apply the attribute directive as an attribute to the host element(for example, <p>)
+        ```javascript
+        <p appHighlight>Highlight me!</p>
+        ```
+    3. Run the application to see the highlight behavior on paragraph element
+        ```javascript
+        ng serve
+        ```
 
   **[⬆ Back to Top](#table-of-contents)**
 
 10. ### What is a module?
 
-  Modules are logical boundaries in your application and the application is divided into separate modules to separate the functionality of your application.
-  Lets take an example of **app.module.ts** root module declared with **@NgModule** decorator as below,
-  ```typescript
-  import { NgModule }      from '@angular/core';
-  import { BrowserModule } from '@angular/platform-browser';
-  import { AppComponent }  from './app.component';
+    Modules are logical boundaries in your application and the application is divided into separate modules to separate the functionality of your application.
+    Lets take an example of **app.module.ts** root module declared with **@NgModule** decorator as below,
+    ```typescript
+    import { NgModule }      from '@angular/core';
+    import { BrowserModule } from '@angular/platform-browser';
+    import { AppComponent }  from './app.component';
 
-  @NgModule ({
-     imports:      [ BrowserModule ],
-     declarations: [ AppComponent ],
-     bootstrap:    [ AppComponent ],
-     providers: []
-  })
-  export class AppModule { }
-  ```
-  The NgModule decorator has five important(among all) options
-  1. The imports option is used to import other dependent modules. The BrowserModule is required by default for any web based angular application
-  2. The declarations option is used to define components in the respective module
-  3. The bootstrap option tells Angular which Component to bootstrap in the application
-  4. The providers option is used to configure set of injectable objects that are available in the injector of this module.
-  5. The entryComponents option is a set of components dynamically loaded into the view.
+    @NgModule ({
+      imports:      [ BrowserModule ],
+      declarations: [ AppComponent ],
+      bootstrap:    [ AppComponent ],
+      providers: []
+    })
+    export class AppModule { }
+    ```
+    The NgModule decorator has five important(among all) options
+    1. The imports option is used to import other dependent modules. The BrowserModule is required by default for any web based angular application
+    2. The declarations option is used to define components in the respective module
+    3. The bootstrap option tells Angular which Component to bootstrap in the application
+    4. The providers option is used to configure set of injectable objects that are available in the injector of this module.
+    5. The entryComponents option is a set of components dynamically loaded into the view.
 
   **[⬆ Back to Top](#table-of-contents)**  
 
