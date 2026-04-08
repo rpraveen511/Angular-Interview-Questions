@@ -388,8 +388,8 @@
 7. ### What are the various kinds of directives?
     There are mainly three kinds of directives,
     1. **Components** — These are directives with a template.
-    2. **Structural directives** — These directives change the DOM layout by adding and removing DOM elements.
-    3. **Attribute directives** — These directives change the appearance or behavior of an element, component, or another directive.
+    2. **Structural directives** — These directives change the DOM **layout** by adding and removing DOM elements.
+    3. **Attribute directives** — These directives change the **appearance or behavior** of an element, component, or another directive.
 
   **[⬆ Back to Top](#table-of-contents)**
 
@@ -454,267 +454,267 @@
 
 11. ### What are components?
 
-  1. The most basic UI building blocks of an application.
-  2. A component includes a TypeScript class with a @Component() decorator, an HTML template, and styles.
-  3. @Component specifies
-    1. A selector that defines how the component is used in a template.
-    2. HTML elements in your template that match this selector become instances of the component.
-    3. An HTML template that instructs Angular how to render the component.
-    4. An optional set of CSS styles that define the appearance of the template's HTML elements.
+    1. The most basic UI building blocks of an application.
+    2. A component includes a TypeScript class with a @Component() decorator, an HTML template, and styles.
+    3. @Component specifies
+        1. A selector that defines how the component is used in a template.
+        2. HTML elements in your template that match this selector become instances of the component.
+        3. An HTML template that instructs Angular how to render the component.
+        4. An optional set of CSS styles that define the appearance of the template's HTML elements.
 
-  These components are subset of directives. Unlike directives, components always have a template and only one component can be instantiated per an element in a template.
-  Let's see a simple example of Angular component
-  ```typescript
-  import { Component } from '@angular/core';
+    These components are subset of directives. Unlike directives, components always have a template and only one component can be instantiated per an element in a template.
+    Let's see a simple example of Angular component
+      ```typescript
+      import { Component } from '@angular/core';
 
-  @Component ({
-     selector: 'my-app',
-     template: ` <div>
-      <h1>{{title}}</h1>
-      <div>Learn Angular6 with examples</div>
-     </div> `,
-  })
+      @Component ({
+        selector: 'my-app',
+        template: ` <div>
+          <h1>{{title}}</h1>
+          <div>Learn Angular6 with examples</div>
+        </div> `,
+      })
 
-  export class AppComponent {
-     title: string = 'Welcome to Angular world';
-  }
-  ```
+      export class AppComponent {
+        title: string = 'Welcome to Angular world';
+      }
+      ```
 
   **[⬆ Back to Top](#table-of-contents)**
 
 12. ### What are the differences between Component and Directive?
-  In a short note, A component(@component) is a directive-with-a-template.
+    In a short note, A component(@component) is a directive-with-a-template.
 
-  Some of the major differences are mentioned in a tabular form
+    Some of the major differences are mentioned in a tabular form
 
-  | Component | Directive |
-  |---- | ---------
-  | To register a component we use @Component meta-data annotation  | To register directives we use @Directive meta-data annotation |
-  | Components are typically used to create UI widgets| Directives are used to design re-usable components |
-  | Component is used to break up the application into smaller components| Directives are used to add behavior to an existing DOM element|
-  | Only one component can be present per DOM element | Many directives can be used per DOM element |
-  | @View decorator or templateurl/template are mandatory | Directive doesn't use View|
+    | Component | Directive |
+    |---- | ---------
+    | To register a component we use @Component meta-data annotation  | To register directives we use @Directive meta-data annotation |
+    | Components are typically used to create UI widgets| Directives are used to design re-usable components |
+    | Component is used to break up the application into smaller components| Directives are used to add behavior to an existing DOM element|
+    | Only one component can be present per DOM element | Many directives can be used per DOM element |
+    | @View decorator or templateurl/template are mandatory | Directive doesn't use View|
 
   **[⬆ Back to Top](#table-of-contents)**
 
 13. ### What is a template?
-  A template is a HTML view where you can **display data by binding controls to properties** of an Angular component. You can store your component's template in one of two places. You can define it inline using the template property, or you can define the template in a separate HTML file and link to it in the component metadata using the @Component decorator's templateUrl property.
+    A template is a HTML view where you can **display data by binding controls to properties** of an Angular component. You can store your component's template in one of two places. You can define it inline using the template property, or you can define the template in a separate HTML file and link to it in the component metadata using the @Component decorator's templateUrl property.
 
-  **Using inline template with template syntax,**
-  ```typescript
-  import { Component } from '@angular/core';
+    **Using inline template with template syntax,**
+    ```typescript
+    import { Component } from '@angular/core';
 
-  @Component ({
-     selector: 'my-app',
-     template: '
-      <div>
-       <h1>{{title}}</h1>
-       <div>Learn Angular</div>
-      </div>
-     '
-  })
+    @Component ({
+      selector: 'my-app',
+      template: '
+        <div>
+        <h1>{{title}}</h1>
+        <div>Learn Angular</div>
+        </div>
+      '
+    })
 
-  export class AppComponent {
-     title: string = 'Hello World';
-  }
-  ```
-  **Using separate template file such as app.component.html**
-  ```typescript
-  import { Component } from '@angular/core';
+    export class AppComponent {
+      title: string = 'Hello World';
+    }
+    ```
+    **Using separate template file such as app.component.html**
+    ```typescript
+    import { Component } from '@angular/core';
 
-  @Component ({
-     selector: 'my-app',
-     templateUrl: 'app/app.component.html'
-  })
+    @Component ({
+      selector: 'my-app',
+      templateUrl: 'app/app.component.html'
+    })
 
-  export class AppComponent {
-     title: string = 'Hello World';
-  }
-  ```
+    export class AppComponent {
+      title: string = 'Hello World';
+    }
+    ```
 
   **[⬆ Back to Top](#table-of-contents)**
 
 14. ### What are lifecycle hooks available?
-  Angular application goes through an entire set of processes or has a lifecycle right from its initiation to the end of the application.
-  The representation of lifecycle in pictorial representation as follows,
+    Angular application goes through an entire set of processes or has a lifecycle right from its initiation to the end of the application.
+    The representation of lifecycle in pictorial representation as follows,
 
-  ![ScreenShot](images/lifecycle.png)
+    ![ScreenShot](images/lifecycle.png)
 
-  The description of each lifecycle method is as below,
-  1. **ngOnChanges:** This method is called When the value of a data bound property changes.
-  2. **ngOnInit:** This is called whenever the initialization of the directive/component after Angular first displays the data-bound properties happens.
-  3. **ngDoCheck:** This is for the detection and to act on changes that Angular can't or won't detect on its own.
-  4. **ngAfterContentInit:** This is called in response after Angular projects external content into the component's view.
-  5. **ngAfterContentChecked:** This is called in response after Angular checks the content projected into the component.
-  6. **ngAfterViewInit:** This is called in response after Angular initializes the component's views and child views.
-  7. **ngAfterViewChecked:** This is called in response after Angular checks the component's views and child views.
-  8. **ngOnDestroy:** This is the cleanup phase just before Angular destroys the directive/component.
+    The description of each lifecycle method is as below,
+    1. **ngOnChanges:** This method is called When the value of a data bound property changes.
+    2. **ngOnInit:** This is called whenever the initialization of the directive/component after Angular first displays the data-bound properties happens.
+    3. **ngDoCheck:** This is for the detection and to act on changes that Angular can't or won't detect on its own.
+    4. **ngAfterContentInit:** This is called in response after Angular projects external content into the component's view.
+    5. **ngAfterContentChecked:** This is called in response after Angular checks the content projected into the component.
+    6. **ngAfterViewInit:** This is called in response after Angular initializes the component's views and child views.
+    7. **ngAfterViewChecked:** This is called in response after Angular checks the component's views and child views.
+    8. **ngOnDestroy:** This is the cleanup phase just before Angular destroys the directive/component.
 
   **[⬆ Back to Top](#table-of-contents)**
 
 15. ### What is a data binding?
-  Data binding is a core concept in Angular and allows to define communication between a component and the DOM, making it very easy to define interactive applications without worrying about pushing and pulling data. There are four forms of data binding(divided as 3 categories) which differ in the way the data is flowing.
-  1. **From the Component to the DOM:**
+    Data binding is a core concept in Angular and allows to define communication between a component and the DOM, making it very easy to define interactive applications without worrying about pushing and pulling data. There are four forms of data binding(divided as 3 categories) which differ in the way the data is flowing.
+    1. **From the Component to the DOM:**
 
-    **Interpolation:** {{ value }}: Adds the value of a property from the component
-    ```html
-    <li>Name: {{ user.name }}</li>
-    <li>Address: {{ user.address }}</li>
-    ```
-    **Property binding:** [property]="value": The value is passed from the component to the specified property or simple HTML attribute
-    ```html
-    <input type="email" [value]="user.email">
-    ```
-  2. **From the DOM to the Component:**
-    **Event binding: (event)="function":** When a specific DOM event happens (eg.: click, change, keyup), call the specified method in the component
-    ```html
-    <button (click)="logout()"></button>
-    ```
-  3. **Two-way binding:**
-    **Two-way data binding:** [(ngModel)]="value": Two-way data binding allows to have the data flow both ways. For example, in the below code snippet, both the email DOM input and component email property are in sync
-    ```html
-    <input type="email" [(ngModel)]="user.email">
-    ```
+        **Interpolation:** {{ value }}: Adds the value of a property from the component
+          ```html
+          <li>Name: {{ user.name }}</li>
+          <li>Address: {{ user.address }}</li>
+          ```
+        **Property binding:** [property]="value": The value is passed from the component to the specified property or simple HTML attribute
+          ```html
+          <input type="email" [value]="user.email">
+          ```
+    2. **From the DOM to the Component:**
+        **Event binding: (event)="function":** When a specific DOM event happens (eg.: click, change, keyup), call the specified method in the component
+          ```html
+          <button (click)="logout()"></button>
+          ```
+    3. **Two-way binding:**
+        **Two-way data binding:** [(ngModel)]="value": Two-way data binding allows to have the data flow both ways. For example, in the below code snippet, both the email DOM input and component email property are in sync
+          ```html
+          <input type="email" [(ngModel)]="user.email">
+          ```
 
   **[⬆ Back to Top](#table-of-contents)**
 
 16. ### What is metadata?
-  Metadata is used to decorate a class so that it can configure the expected behavior of the class. The metadata is represented by decorators.
-  **Decorators are a design pattern that is used to separate modification of a class**
-  1. **Class decorators**, e.g. @Component and @NgModule
-    ```typescript
-    import { NgModule, Component } from '@angular/core';
+    Metadata is used to decorate a class so that it can configure the expected behavior of the class. The metadata is represented by decorators.
+    **Decorators are a design pattern that is used to separate modification of a class**
+    1. **Class decorators**, e.g. @Component and @NgModule
+        ```typescript
+        import { NgModule, Component } from '@angular/core';
 
-    @Component({
-      selector: 'my-component',
-      template: '<div>Class decorator</div>',
-    })
-    export class MyComponent {
-      constructor() {
-      console.log('Hey I am a component!');
-      }
-    }
+        @Component({
+          selector: 'my-component',
+          template: '<div>Class decorator</div>',
+        })
+        export class MyComponent {
+          constructor() {
+          console.log('Hey I am a component!');
+          }
+        }
 
-    @NgModule({
-      imports: [],
-      declarations: [],
-    })
-    export class MyModule {
-      constructor() {
-      console.log('Hey I am a module!');
-      }
-    }
-    ```
-  2. **Property decorators** Used for properties inside classes, e.g. @Input and @Output
-    ```typescript
-    import { Component, Input } from '@angular/core';
+        @NgModule({
+          imports: [],
+          declarations: [],
+        })
+        export class MyModule {
+          constructor() {
+          console.log('Hey I am a module!');
+          }
+        }
+        ```
+    2. **Property decorators** Used for properties inside classes, e.g. @Input and @Output
+        ```typescript
+        import { Component, Input } from '@angular/core';
 
-    @Component({
-      selector: 'my-component',
-      template: '<div>Property decorator</div>'
-    })
+        @Component({
+          selector: 'my-component',
+          template: '<div>Property decorator</div>'
+        })
 
-    export class MyComponent {
-      @Input()
-      title: string;
-    }
-    ```
-  3. **Method decorators** Used for methods inside classes, e.g. @HostListener
-    ```typescript
-    import { Component, HostListener } from '@angular/core';
+        export class MyComponent {
+          @Input()
+          title: string;
+        }
+        ```
+    3. **Method decorators** Used for methods inside classes, e.g. @HostListener
+        ```typescript
+        import { Component, HostListener } from '@angular/core';
 
-    @Component({
-      selector: 'my-component',
-      template: '<div>Method decorator</div>'
-    })
-    export class MyComponent {
-      @HostListener('click', ['$event'])
-      onHostClick(event: Event) {
-        // clicked, `event` available
-      }
-    }
-    ```
-  4. **Parameter decorators** Used for parameters inside class constructors, e.g. @Inject, Optional
-    ```typescript
-    import { Component, Inject } from '@angular/core';
-    import { MyService } from './my-service';
+        @Component({
+          selector: 'my-component',
+          template: '<div>Method decorator</div>'
+        })
+        export class MyComponent {
+          @HostListener('click', ['$event'])
+          onHostClick(event: Event) {
+            // clicked, `event` available
+          }
+        }
+        ```
+    4. **Parameter decorators** Used for parameters inside class constructors, e.g. @Inject, Optional
+        ```typescript
+        import { Component, Inject } from '@angular/core';
+        import { MyService } from './my-service';
 
-    @Component({
-      selector: 'my-component',
-      template: '<div>Parameter decorator</div>'
-    })
-    export class MyComponent {
-      constructor(@Inject(MyService) myService) {
-        console.log(myService); // MyService
-      }
-    }
-    ```
+        @Component({
+          selector: 'my-component',
+          template: '<div>Parameter decorator</div>'
+        })
+        export class MyComponent {
+          constructor(@Inject(MyService) myService) {
+            console.log(myService); // MyService
+          }
+        }
+        ```
   **[⬆ Back to Top](#table-of-contents)**
 
 17. ### What is angular CLI?
-  Angular CLI(**Command Line Interface**) is a command line interface to scaffold and build angular apps using nodejs style (commonJs) modules.
-  You need to install using below npm command,
-  ```
-  npm install @angular/cli@latest
-  ```
-  Below are the list of few commands, which will come handy while creating angular projects
-  1. **Creating New Project:** ng new <project-name>
+    Angular CLI(**Command Line Interface**) is a command line interface to scaffold and build angular apps using nodejs style (commonJs) modules.
+    You need to install using below npm command,
+    ```
+    npm install @angular/cli@latest
+    ```
+    Below are the list of few commands, which will come handy while creating angular projects
+    1. **Creating New Project:** ng new <project-name>
 
-  2. **Generating Components, Directives & Services:** ng generate/g <feature-name>
-    The different types of commands would be,
-    * ng generate class my-new-class: add a class to your application
-    * ng generate component my-new-component: add a component to your application
-    * ng generate directive my-new-directive: add a directive to your application
-    * ng generate enum my-new-enum: add an enum to your application
-    * ng generate module my-new-module: add a module to your application
-    * ng generate pipe my-new-pipe: add a pipe to your application
-    * ng generate service my-new-service: add a service to your application
+    2. **Generating Components, Directives & Services:** ng generate/g <feature-name>
+      The different types of commands would be,
+      * ng generate class my-new-class: add a class to your application
+      * ng generate component my-new-component: add a component to your application
+      * ng generate directive my-new-directive: add a directive to your application
+      * ng generate enum my-new-enum: add an enum to your application
+      * ng generate module my-new-module: add a module to your application
+      * ng generate pipe my-new-pipe: add a pipe to your application
+      * ng generate service my-new-service: add a service to your application
 
-  3. **Running the Project:** ng serve
+    3. **Running the Project:** ng serve
 
   **[⬆ Back to Top](#table-of-contents)**
 
 18. ### What is the difference between constructor and ngOnInit?
-  TypeScript classes has a default method called constructor which is normally used for the initialization purpose. Whereas ngOnInit method is specific to Angular, especially used to define Angular bindings. Even though constructor getting called first, it is preferred to move all of your Angular bindings to ngOnInit method.
-  In order to use ngOnInit, you need to implement OnInit interface as below,
+    TypeScript classes has a default method called constructor which is normally used for the initialization purpose. Whereas ngOnInit method is specific to Angular, especially used to define Angular bindings. Even though constructor getting called first, it is preferred to move all of your Angular bindings to ngOnInit method.
+    In order to use ngOnInit, you need to implement OnInit interface as below,
 
-  ```typescript
-  export class App implements OnInit{
-    constructor(){
-     //called first time before the ngOnInit()
-    }
+    ```typescript
+    export class App implements OnInit{
+      constructor(){
+      //called first time before the ngOnInit()
+      }
 
-    ngOnInit(){
-     //called after the constructor and called  after the first ngOnChanges()
+      ngOnInit(){
+      //called after the constructor and called  after the first ngOnChanges()
+      }
     }
-  }
-  ```
+    ```
 
   **[⬆ Back to Top](#table-of-contents)**
 
 19. ### What is a service?
-  A service is used when a common functionality needs to be provided to various modules. Services allow for greater separation of concerns for your application and better modularity by allowing you to extract common functionality out of components.
+    A service is used when a common functionality needs to be provided to various modules. Services allow for greater separation of concerns for your application and better modularity by allowing you to extract common functionality out of components.
 
-  Let's create a repoService which can be used across components,
+    Let's create a repoService which can be used across components,
 
-  ```typescript
-  import { Injectable } from '@angular/core';
-  import { Http } from '@angular/http';
+    ```typescript
+    import { Injectable } from '@angular/core';
+    import { Http } from '@angular/http';
 
-  @Injectable({ // The Injectable decorator is required for dependency injection to work
-    // providedIn option registers the service with a specific NgModule
-    providedIn: 'root',  // This declares the service with the root app (AppModule)
-  })
-  export class RepoService{
-    constructor(private http: Http){
+    @Injectable({ // The Injectable decorator is required for dependency injection to work
+      // providedIn option registers the service with a specific NgModule
+      providedIn: 'root',  // This declares the service with the root app (AppModule)
+    })
+    export class RepoService{
+      constructor(private http: Http){
+      }
+
+      fetchAll(){
+      return this.http.get('https://api.github.com/repositories');
+      }
     }
-
-    fetchAll(){
-    return this.http.get('https://api.github.com/repositories');
-    }
-  }
-  ```
-  The above service uses Http service as a dependency.
+    ```
+    The above service uses Http service as a dependency.
 
   **[⬆ Back to Top](#table-of-contents)**
 
