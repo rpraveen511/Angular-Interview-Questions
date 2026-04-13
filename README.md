@@ -886,11 +886,11 @@
    3. View-to-source-to-view
 
 
-    | Data direction | Syntax | Type |
-    |---- | --------- | ---- 
-    | From the source-to-view(One-way)  | 1. {{expression}} 2. [target]="expression" 3. bind-target="expression" | Interpolation, Property, Attribute, Class, Style|
-    | From view-to-source(One-way) | 1. (target)="statement" 2. on-target="statement" | Event |
-    | View-to-source-to-view(Two-way)| 1. [(target)]="expression" 2. bindon-target="expression"| Two-way |
+  | Data direction | Syntax | Type |
+  |---- | --------- | ---- 
+  | From the source-to-view(One-way)  | 1. {{expression}} 2. [target]="expression" 3. bind-target="expression" | Interpolation, Property, Attribute, Class, Style|
+  | From view-to-source(One-way) | 1. (target)="statement" 2. on-target="statement" | Event |
+  | View-to-source-to-view(Two-way)| 1. [(target)]="expression" 2. bindon-target="expression"| Two-way |
 
   **[⬆ Back to Top](#table-of-contents)**
 
