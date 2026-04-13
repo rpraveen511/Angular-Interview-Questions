@@ -534,6 +534,16 @@
 
   **[⬆ Back to Top](#table-of-contents)**
 
+23. ### What is the option to choose between inline and external template file?
+    You can store your component's template in one of two places. You can define it inline using the **template** property, or you can define the template in a separate HTML file and link to it in the component metadata using the **@Component** decorator's **templateUrl** property.
+
+    The choice between inline and separate HTML is a matter of taste, circumstances, and organization policy. But normally we use inline template for small portion of code and external template file for bigger views. By default, the Angular CLI generates components with a template file. But you can override that with the below command,
+    ```
+    ng generate component hero -it
+    ```
+
+  **[⬆ Back to Top](#table-of-contents)**
+
 14. ### What are lifecycle hooks available?
     Angular application goes through an entire set of processes or has a lifecycle right from its initiation to the end of the application.
     The representation of lifecycle in pictorial representation as follows,
@@ -676,6 +686,13 @@
 
 18. ### What is the difference between constructor and ngOnInit?
     TypeScript classes has a default method called constructor which is normally used for the initialization purpose. Whereas ngOnInit method is specific to Angular, especially used to define Angular bindings. Even though constructor getting called first, it is preferred to move all of your Angular bindings to ngOnInit method.
+
+    **The Constructor** is a default method of the class that is executed when the class is instantiated and ensures proper initialisation of fields in the class and its subclasses. Angular, or better Dependency Injector (DI), analyses the constructor parameters and when it creates a new instance by calling new MyClass() it tries to find providers that match the types of the constructor parameters, resolves them and passes them to the constructor.
+
+    **ngOnInit** is a life cycle hook called by Angular to indicate that Angular is done creating the component.
+
+    Mostly we use ngOnInit for all the initialization/declaration and avoid stuff to work in the constructor. The constructor should only be used to initialize class members but shouldn't do actual "work". So you should use constructor() to setup Dependency Injection and not much else. ngOnInit() is better place to "start" - it's where/when components' bindings are resolved.
+
     In order to use ngOnInit, you need to implement OnInit interface as below,
 
     ```typescript
@@ -720,152 +737,144 @@
 
 20. ### What is dependency injection in Angular?
 
-  Dependency injection lets you declare the dependencies of your Typescript classes without taking care of their instantiation.Instead Angular handles the instantiation for you and lets you write more testable and flexible code.
+    Dependency injection lets you declare the dependencies of your Typescript classes without taking care of their instantiation.Instead Angular handles the instantiation for you and lets you write more testable and flexible code.
 
-  Dependency injection (DI), is an important application design pattern in which a class asks for dependencies from external sources rather than creating them itself. Angular comes with its own dependency injection framework for resolving dependencies( services or objects that a class needs to perform its function).So you can have your services depend on other services throughout your application.
+    Dependency injection (DI), is an important application design pattern in which a class asks for dependencies from external sources rather than creating them itself. Angular comes with its own dependency injection framework for resolving dependencies( services or objects that a class needs to perform its function).So you can have your services depend on other services throughout your application.
 
-  Design Principles are best practices to follow to allow scalable architecture and software craftmanship.
+    **Design Principles are best practices to follow to allow scalable architecture and software craftmanship.**
 
-  Design Patterns are techniques about how to do the design and architect ouur code.It is a general repeatable solution for a commonly occuring problem in software design.
+    **Design Patterns are techniques about how to do the design and architect our code.It is a general repeatable solution for a commonly occuring problem in software design.**
 
   **[⬆ Back to Top](#table-of-contents)**
 
 21. ### How is Dependency Hierarchy formed?
 
-  Injectors in Angular have rules that can be leveraged to achieve the desired visibility of injectables in your applications. By understanding these rules, you can determine in which NgModule, Component, or Directive you should declare a provider.
+    Injectors in Angular have rules that can be leveraged to achieve the desired visibility of injectables in your applications. By understanding these rules, you can determine in which NgModule, Component, or Directive you should declare a provider.
 
-  #### Angular has two injector hierarchies:
-  ![ScreenShot](images/injectorHierarchies.png)
+    #### Angular has two injector hierarchies:
+    ![ScreenShot](images/injectorHierarchies.png)
 
-  #### Module injector 
-  When angular starts, it creates a root injector where the services will be registered, these are provided via injectable annotation. All services provided in the `ng-model` property are called providers (if those modules are not lazy-loaded).
+    #### Module injector 
+    When angular starts, it creates a root injector where the services will be registered, these are provided via injectable annotation. All services provided in the `ng-model` property are called providers (if those modules are not lazy-loaded).
 
-  Angular recursively goes through all models which are being used in the application and creates instances for provided services in the root injector. If you provide some service in an eagerly-loaded model, the service will be added to the root injector, which makes it available across the whole application.
+    Angular recursively goes through all models which are being used in the application and creates instances for provided services in the root injector. If you provide some service in an eagerly-loaded model, the service will be added to the root injector, which makes it available across the whole application.
 
-  #### Platform Module
-  During application bootstrapping angular creates a few more injectors, above the root injector goes the platform injector, this one is created by the platform browser dynamic function inside the `main.ts` file, and it provides some platform-specific features like `DomSanitizer`. 
+    #### Platform Module
+    During application bootstrapping angular creates a few more injectors, above the root injector goes the platform injector, this one is created by the platform browser dynamic function inside the `main.ts` file, and it provides some platform-specific features like `DomSanitizer`. 
 
-  #### NullInjector()
-  At the very top, the next parent injector in the hierarchy is the `NullInjector()`.The responsibility of this injector is to throw the error if something tries to find dependencies there, unless you've used `@Optional()` because ultimately, everything ends at the `NullInjector()` and it returns an error or, in the case of `@Optional()`, `null`.
+    #### NullInjector()
+    At the very top, the next parent injector in the hierarchy is the `NullInjector()`.The responsibility of this injector is to throw the error if something tries to find dependencies there, unless you've used `@Optional()` because ultimately, everything ends at the `NullInjector()` and it returns an error or, in the case of `@Optional()`, `null`.
 
-  ![ScreenShot](images/hierarchyDiagram.png)
+    ![ScreenShot](images/hierarchyDiagram.png)
 
 
-  #### ElementInjector
-  Angular creates `ElementInjector` hierarchies implicitly for each DOM element. `ElementInjector` injector is being created for any tag that matches the angular component, or any tag on which directive is applied, and you can configure it in component and directive annotations inside the provider's property, thus, it creates its own hierarchy likewise the upper one.
+    #### ElementInjector
+    Angular creates `ElementInjector` hierarchies implicitly for each DOM element. `ElementInjector` injector is being created for any tag that matches the angular component, or any tag on which directive is applied, and you can configure it in component and directive annotations inside the provider's property, thus, it creates its own hierarchy likewise the upper one.
 
-  ![ScreenShot](images/elementInjectorHieracrhy.png)
+    ![ScreenShot](images/elementInjectorHieracrhy.png)
 
   **[⬆ Back to Top](#table-of-contents)**
 
 22. ### What is the purpose of async pipe?
-  The AsyncPipe subscribes to an observable or promise and returns the latest value it has emitted. When a new value is emitted, the pipe marks the component to be checked for changes.
+    The AsyncPipe subscribes to an observable or promise and returns the latest value it has emitted. When a new value is emitted, the pipe marks the component to be checked for changes.
 
-  Let's take a time observable which continuously updates the view for every 2 seconds with the current time.
-  ```typescript
-  @Component({
-    selector: 'async-observable-pipe',
-    template: `<div><code>observable|async</code>:
-       Time: {{ time | async }}</div>`
-  })
-  export class AsyncObservablePipeComponent {
-    time = new Observable(observer =>
-    setInterval(() => observer.next(new Date().toString()), 2000)
-    );
-  }
-  ```
-
-  **[⬆ Back to Top](#table-of-contents)**
-
-23. ### What is the option to choose between inline and external template file?
-  You can store your component's template in one of two places. You can define it inline using the **template** property, or you can define the template in a separate HTML file and link to it in the component metadata using the **@Component** decorator's **templateUrl** property.
-
-  The choice between inline and separate HTML is a matter of taste, circumstances, and organization policy. But normally we use inline template for small portion of code and external template file for bigger views. By default, the Angular CLI generates components with a template file. But you can override that with the below command,
-  ```
-  ng generate component hero -it
-  ```
+    Let's take a time observable which continuously updates the view for every 2 seconds with the current time.
+    ```typescript
+    @Component({
+      selector: 'async-observable-pipe',
+      template: `<div><code>observable|async</code>:
+        Time: {{ time | async }}</div>`
+    })
+    export class AsyncObservablePipeComponent {
+      time = new Observable(observer =>
+      setInterval(() => observer.next(new Date().toString()), 2000)
+      );
+    }
+    ```
 
   **[⬆ Back to Top](#table-of-contents)**
+
+
 
 24. ### What is the purpose of ngFor directive?
-  We use Angular ngFor directive in the template to display each item in the list. For example, here we iterate over list of users,
-  ```html
-  <li *ngFor="let user of users">
-    {{ user }}
-  </li>
-  ```
-  The user variable in the ngFor double-quoted instruction is a **template input variable**
+    We use Angular ngFor directive in the template to display each item in the list. For example, here we iterate over list of users,
+    ```html
+    <li *ngFor="let user of users">
+      {{ user }}
+    </li>
+    ```
+    The user variable in the ngFor double-quoted instruction is a **template input variable**
 
   **[⬆ Back to Top](#table-of-contents)**
 
 25. ### What is the purpose of ngIf directive?
-  Sometimes an app needs to display a view or a portion of a view only under specific circumstances. The Angular ngIf directive inserts or removes an element based on a truthy/falsy condition. Let's take an example to display a message if the user age is more than 18,
-  ```html
-  <p *ngIf="user.age > 18">You are not eligible for student pass!</p>
-  ```
-  **Note:** Angular isn't showing and hiding the message. It is adding and removing the paragraph element from the DOM. That improves performance, especially in the larger projects with many data bindings.
+    Sometimes an app needs to display a view or a portion of a view only under specific circumstances. The Angular ngIf directive inserts or removes an element based on a truthy/falsy condition. Let's take an example to display a message if the user age is more than 18,
+    ```html
+    <p *ngIf="user.age > 18">You are not eligible for student pass!</p>
+    ```
+    **Note:** Angular isn't showing and hiding the message. It is adding and removing the paragraph element from the DOM. That improves performance, especially in the larger projects with many data bindings.
 
   **[⬆ Back to Top](#table-of-contents)**
 
 26. ### What happens if you use script tag inside template?
 
-  Angular recognizes the value as unsafe and automatically sanitizes it, which removes the `script` tag but keeps safe content such as the text content of the `script` tag. This way it eliminates the risk of script injection attacks. If you still use it then it will be ignored and a warning appears in the browser console.
+    Angular recognizes the value as unsafe and automatically sanitizes it, which removes the `script` tag but keeps safe content such as the text content of the `script` tag. This way it eliminates the risk of script injection attacks. If you still use it then it will be ignored and a warning appears in the browser console.
 
-  Let's take an example of innerHtml property binding which causes XSS vulnerability,
-  ```typescript
-  export class InnerHtmlBindingComponent {
-    // For example, a user/attacker-controlled value from a URL.
-    htmlSnippet = 'Template <script>alert("0wned")</script> <b>Syntax</b>';
-  }
-  ```
+    Let's take an example of innerHtml property binding which causes XSS vulnerability,
+    ```typescript
+    export class InnerHtmlBindingComponent {
+      // For example, a user/attacker-controlled value from a URL.
+      htmlSnippet = 'Template <script>alert("0wned")</script> <b>Syntax</b>';
+    }
+    ```
 
   **[⬆ Back to Top](#table-of-contents)**
 
 27. ### What is interpolation?
 
-  Interpolation is a special syntax that Angular converts into property binding. It's a convenient alternative to property binding. It is represented by double curly braces({{}}). The text between the braces is often the name of a component property. Angular replaces that name with the string value of the corresponding component property.
+    Interpolation is a special syntax that Angular converts into **property binding**. It's a convenient alternative to property binding. It is represented by double curly braces({{}}). The text between the braces is often the name of a component property. Angular replaces that name with the string value of the corresponding component property.
 
-  Let's take an example,
-  ```html
-  <h3>
-    {{title}}
-    <img src="{{url}}" style="height:30px">
-  </h3>
-  ```
-  In the example above, Angular evaluates the title and url properties and fills in the blanks, first displaying a bold application title and then a URL.
+    Let's take an example,
+    ```html
+    <h3>
+      {{title}}
+      <img src="{{url}}" style="height:30px">
+    </h3>
+    ```
+    In the example above, Angular evaluates the title and url properties and fills in the blanks, first displaying a bold application title and then a URL.
 
   **[⬆ Back to Top](#table-of-contents)**
 
 28. ### What are template expressions?
-  A template expression produces a value similar to any Javascript expression. Angular executes the expression and assigns it to a property of a binding target; the target might be an HTML element, a component, or a directive. In the property binding, a template expression appears in quotes to the right of the = symbol as in **[property]="expression"**.
-  In interpolation syntax, the template expression is surrounded by double curly braces. For example, in the below interpolation, the template expression is {{username}},
+    A template expression produces a value similar to any Javascript expression. Angular executes the expression and assigns it to a property of a binding target; the target might be an HTML element, a component, or a directive. In the property binding, a template expression appears in quotes to the right of the = symbol as in **[property]="expression"**.
+    In interpolation syntax, the template expression is surrounded by double curly braces. For example, in the below interpolation, the template expression is {{username}},
 
-  ```html
-  <h3>{{username}}, welcome to Angular</h3>
-  ```
+    ```html
+    <h3>{{username}}, welcome to Angular</h3>
+    ```
 
-  The below javascript expressions are prohibited in template expression
-  1. assignments (=, +=, -=, ...)
-  2. new
-  3. chaining expressions with ; or ,
-  4. increment and decrement operators (++ and --)
+    The below javascript expressions are prohibited in template expression
+    1. assignments (=, +=, -=, ...)
+    2. new
+    3. chaining expressions with ; or ,
+    4. increment and decrement operators (++ and --)
 
   **[⬆ Back to Top](#table-of-contents)**
 
 29. ### What are template statements?
-  A template statement responds to an event raised by a binding target such as an element, component, or directive. The template statements appear in quotes to the right of the = symbol like **(event)="statement"**.
+    A template statement responds to an event raised by a binding target such as an element, component, or directive. The template statements appear in quotes to the right of the = symbol like **(event)="statement"**.
 
-  Let's take an example of button click event's statement
+    Let's take an example of button click event's statement
 
-  ```html
-  <button (click)="editProfile()">Edit Profile</button>
-  ```
-  In the above expression, editProfile is a template statement. The below JavaScript syntax expressions are not allowed.
-  1. new
-  2. increment and decrement operators, ++ and --
-  3. operator assignment, such as += and -=
-  4. the bitwise operators | and &
-  5. the template expression operators
+    ```html
+    <button (click)="editProfile()">Edit Profile</button>
+    ```
+    In the above expression, editProfile is a template statement. The below JavaScript syntax expressions are not allowed.
+    1. new
+    2. increment and decrement operators, ++ and --
+    3. operator assignment, such as += and -=
+    4. the bitwise operators | and &
+    5. the template expression operators
 
   **[⬆ Back to Top](#table-of-contents)**
 
@@ -876,10 +885,9 @@
    2. From view-to-source
    3. View-to-source-to-view
 
-   The possible binding syntax can be tabularized as below,
 
     | Data direction | Syntax | Type |
-    |---- | --------- | ---- |
+    |---- | --------- | ---- 
     | From the source-to-view(One-way)  | 1. {{expression}} 2. [target]="expression" 3. bind-target="expression" | Interpolation, Property, Attribute, Class, Style|
     | From view-to-source(One-way) | 1. (target)="statement" 2. on-target="statement" | Event |
     | View-to-source-to-view(Two-way)| 1. [(target)]="expression" 2. bindon-target="expression"| Two-way |
